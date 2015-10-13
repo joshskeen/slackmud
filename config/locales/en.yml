@@ -1,0 +1,99 @@
+en:
+  hello: "Hello world"
+  game:
+    materialize_command:
+      immortal_required: You must be immortal to do that!
+    inventory_command:
+      nothing: Nothing.
+    formatted_inventory: |
+      %{inventory}
+    formatted_inventory_count: |
+      %{inventory} (%{count})
+    player_equipment_description: |
+      ---equipment---
+      worn on head: %{head}
+      worn aroud neck: %{neck}
+      worn on torso: %{torso}
+      worn on arms: %{arms}
+      worn on hands: %{hands}
+      worn on finger: %{finger}
+      worn on wrists: %{wrists}
+      worn on legs: %{legs}
+      worn on feet: %{feet}
+    player_formatted_details: |
+      gender: %{gender}
+      age: %{age}
+      alignment: %{alignment}
+    player_formatted_description: |
+      %{description}
+      %{details}
+      %{equipment}
+    room_formatted_description: |
+
+      %{description}
+
+      it contains: 
+      %{inventory}
+    item_formatted_description: "%{description}" 
+    help:
+      info: |
+         __ _            _                     _ 
+         / _\ | __ _  ___| | __ /\/\  _   _  __| |
+         \ \| |/ _` |/ __| |/ //    \| | | |/ _` |
+         _\ \ | (_| | (__|   </ /\/\ \ |_| | (_| |
+         \__/_|\__,_|\___|_|\_\/    \/\__,_|\__,_|)))
+         ...welcome to slackMUD!
+      look: examines an object, player, or room
+      give: transfers an inventory item to a player
+      no_help_file: "I don't have a helpfile for that topic: %{topic}!"
+    give_command:
+      no_item_matching: "You don't have one of those to give!"
+      no_target: "No one with with that name is here!"
+      quantity_not_found: "You don't have that many to give!"
+      target_not_found: "I don't see anyone here with that name to give to!"
+      success: "You give %{itemdesc} to %{target} (%{qty})"
+      slack_success: "%{name} gives %{itemdesc} to %{target}." 
+    cast_command: 
+      cast_what: Cast what?!
+      spell_not_found: You don't know that spell!
+    spell_create_beer:
+      success: |
+       You move your hands in an intricate series of gestures. Suddenly, %{beername} materializes out of thin air!
+      slack_success: |
+        %{playername} moves %{gender} hands in a series of intricate gestures. Suddenly, %{beername} materializes out of thin air!
+    wear_command:
+      no_item_matching: "You don't have one of those to wear!"
+      not_wearable: "You can't wear that!"
+      slot_occupied: "You're already wearing something there (%{slot})!"
+      success: "You wear %{itemname} on your %{slot}."
+      slack_success: "%{playername} wears %{itemname} on %{gender} %{slot}."
+    remove_command: 
+      not_worn: You aren't wearing one of those!
+      success: "You stop wearing %{itemname}."
+      slack_success: "%{playername} stops wearing %{itemname}."
+    eat_command: 
+      no_item_matching: You don't have one of those to eat!
+      inedible: You can't eat that!
+      success: "You %{actiontype} %{shortdesc}. Delicious!" 
+      slack_success: "%{playername} %{actiontype}s %{shortdesc}. Delicious!" 
+    look_command: 
+      room_objectname: the room
+      not_found: "I don't see that here!"
+      success: "You look at %{objectname}. \n%{description}" 
+      success_self: "You look at yourself. \n%{description}" 
+      slack_success: "%{playername} looks at %{objectname}."
+      slack_success_room: "%{playername} looks around."
+    get_command:
+      no_item_matching: "I don't see one of those to pick up!"
+      no_quantity_found: "There aren't that many to pick up!"
+      success: "Ok, you pick up %{shortdesc}."
+      slack_success: "%{playername} picks up %{shortdesc}."
+    drop_command:
+      no_item_matching: "You don't have one of those to drop!"
+      no_quantity_found: "You don't have that many!"
+      success: "Ok, you drop %{itemname}. (%{qty})"
+      slack_success: "%{playername} drops %{itemname} on the floor. (%{qty})"
+    command_not_found: Huh? Type help for help!
+  room:
+    generic_title: "A nondescript room"
+    generic_description: "About as plain a room as you can possibly get."
