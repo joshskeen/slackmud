@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Get Command' do
+describe 'Materialize Command' do
 
   let(:game){ double(Game) }
   let(:game_command){ GameCommand.new(game) }

@@ -9,6 +9,15 @@ FactoryGirl.define do
       inventory {FactoryGirl.create(:inventory_with_food)}
     end
 
+    factory :immortal do
+      name "josh skeen"
+      gender "male"
+      description "its you!"
+      slackid "U03RCDX0U"
+      immortal true
+      inventory {FactoryGirl.create(:inventory_with_items)}
+    end
+
     factory :player_with_inventory do
       name "josh skeen"
       gender "male"

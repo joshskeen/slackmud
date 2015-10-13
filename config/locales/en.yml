@@ -3,6 +3,8 @@ en:
   game:
     materialize_command:
       immortal_required: You must be immortal to do that!
+      not_found: You can't materialize one of those!
+      success: You feel your backback grow heavier!
     inventory_command:
       nothing: Nothing.
     formatted_inventory: |
