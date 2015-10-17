@@ -11,62 +11,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013162834) do
-
+ActiveRecord::Schema.define(version: 20_151_014_000_938) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "inventories", force: :cascade do |t|
+  create_table 'effects', force: :cascade do |t|
+    t.string 'name'
+    t.string 'value'
+    t.string 'duration'
   end
 
-  create_table "inventory_items", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "inventory_id"
-    t.boolean "worn",         default: false
+  create_table 'inventories', force: :cascade do |_t|
   end
 
-  create_table "item_properties", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "property_id"
+  create_table 'inventory_item_effects', force: :cascade do |t|
+    t.integer 'inventory_item_id'
+    t.integer 'effect_id'
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string "shortdesc"
-    t.string "longdesc"
-    t.string "name"
+  create_table 'inventory_items', force: :cascade do |t|
+    t.integer 'item_id'
+    t.integer 'inventory_id'
+    t.boolean 'worn', default: false
   end
 
-  add_index "items", ["shortdesc"], name: "index_items_on_shortdesc", unique: true, using: :btree
-
-  create_table "players", force: :cascade do |t|
-    t.string   "gender"
-    t.text     "description"
-    t.string   "name"
-    t.string   "slackid"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.integer  "inventory_id"
-    t.boolean  "immortal",     default: false
+  create_table 'item_properties', force: :cascade do |t|
+    t.integer 'item_id'
+    t.integer 'property_id'
   end
 
-  add_index "players", ["inventory_id"], name: "index_players_on_inventory_id", using: :btree
-  add_index "players", ["slackid"], name: "index_players_on_slackid", unique: true, using: :btree
-
-  create_table "properties", force: :cascade do |t|
-    t.string "name"
-    t.string "value"
+  create_table 'items', force: :cascade do |t|
+    t.string 'shortdesc'
+    t.string 'longdesc'
+    t.string 'name'
   end
 
-  create_table "room_players", force: :cascade do |t|
-    t.integer "player_id"
-    t.integer "room_id"
+  add_index 'items', ['shortdesc'], name: 'index_items_on_shortdesc', unique: true, using: :btree
+
+  create_table 'player_effects', force: :cascade do |t|
+    t.integer 'player_id'
+    t.integer 'effect_id'
   end
 
-  create_table "rooms", force: :cascade do |t|
-    t.string  "title"
-    t.text    "description"
-    t.text    "slackid"
-    t.integer "inventory_id"
+  create_table 'players', force: :cascade do |t|
+    t.string 'gender'
+    t.text 'description'
+    t.string 'name'
+    t.string 'slackid'
+    t.datetime 'created_at',                   null: false
+    t.datetime 'updated_at',                   null: false
+    t.integer 'inventory_id'
+    t.boolean 'immortal', default: false
   end
 
+  add_index 'players', ['inventory_id'], name: 'index_players_on_inventory_id', using: :btree
+  add_index 'players', ['slackid'], name: 'index_players_on_slackid', unique: true, using: :btree
+
+  create_table 'properties', force: :cascade do |t|
+    t.string 'name'
+    t.string 'value'
+  end
+
+  create_table 'room_players', force: :cascade do |t|
+    t.integer 'player_id'
+    t.integer 'room_id'
+  end
+
+  create_table 'rooms', force: :cascade do |t|
+    t.string 'title'
+    t.text 'description'
+    t.text 'slackid'
+    t.integer 'inventory_id'
+  end
 end

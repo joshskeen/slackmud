@@ -9,19 +9,20 @@
 #
 
 class InventoryItem < ActiveRecord::Base
-
   belongs_to :inventory
   belongs_to :item
 
-  scope :wearable, -> (item = nil) {
+  has_many :inventory_item_effects
+  has_many :effects, through: :inventory_item_effects
+
+  scope :wearable, lambda { |item = nil|
     where(item: item, worn: false)
   }
-  scope :worn, -> (item = nil){
+  scope :worn, lambda { |item = nil|
     where(item: item, worn: true)
   }
 
-  scope :equipped, -> {
+  scope :equipped, lambda {
     where(worn: true)
   }
-
 end

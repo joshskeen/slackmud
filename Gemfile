@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.2.2'
+ruby '2.2.3'
 
-gem 'dotenv-rails', :groups => [:development, :test]
+gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'rails', '4.2.4'
 
@@ -13,10 +13,10 @@ gem 'puma' # app server
 gem 'pg'
 gem 'slack-api'
 gem 'active_model_serializers'
-#used in seeds file
+# used in seeds file
 gem 'factory_girl_rails'
 
-group :development,:test do
+group :development, :test do
   gem 'annotate'
   gem 'byebug'
   gem 'pry-byebug'

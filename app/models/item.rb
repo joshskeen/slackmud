@@ -13,33 +13,32 @@ class Item < ActiveRecord::Base
 
   has_many :item_properties
   has_many :properties, through: :item_properties
-  scope :by_keyword, -> (keyword = nil) {
-    where("shortdesc LIKE ?", "%#{keyword}%") 
+  scope :by_keyword, lambda { |keyword = nil|
+    where('shortdesc LIKE ?', "%#{keyword}%")
   }
 
-  scope :edible, -> {
+  scope :edible, lambda {
     includes(:properties)
       .where("properties.name = 'edible'")
       .references(:properties)
   }
 
-  scope :wearable, -> {
+  scope :wearable, lambda {
     includes(:properties)
       .where("properties.name = 'wearable'")
       .references(:properties)
   }
-  #todo : with_property scope
+  # TODO: with_property scope
 
   def fetch_property(name)
-    properties.where("name = ?", name).first
+    properties.where('name = ?', name).first
   end
 
   def formatted_description
-    I18n.t 'game.item_formatted_description', description: longdesc 
+    I18n.t 'game.item_formatted_description', description: longdesc
   end
 
   def self.first_by_keyword(keyword)
     by_keyword(keyword).first
   end
-
 end

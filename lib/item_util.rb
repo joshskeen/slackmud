@@ -4,7 +4,6 @@ module ItemUtil
   end
 
   module InstanceMethods
-
     def wearable
       properties.where(name: Property::NAME_WEARABLE).first
     end
@@ -16,6 +15,5 @@ module ItemUtil
     def inventory_formatted_item
       I18n.t 'game.inventory_formatted_item', shortdesc: shortdesc
     end
-
   end
 end

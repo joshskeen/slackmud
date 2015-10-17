@@ -17,4 +17,4 @@
 /tmp
 tags
 .env
-
+.rubocop.yml

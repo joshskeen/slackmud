@@ -1,0 +1,3 @@
+module Spell
+
+end

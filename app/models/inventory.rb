@@ -6,27 +6,26 @@
 #
 
 class Inventory < ActiveRecord::Base
-
   has_many :inventory_items
   has_many :items, through: :inventory_items
-  
+
   has_many :edible_items,
-    -> { edible },
-    class_name: 'Item',
-    source: :item,
-    through: :inventory_items
+           -> { edible },
+           class_name: 'Item',
+           source: :item,
+           through: :inventory_items
   has_many :wearable_items,
-    -> { wearable },
-    class_name: 'Item',
-    source: :item,
-    through: :inventory_items
-  has_many :items_unworn, -> { where worn: false }, class_name: 'InventoryItem'  
-  has_many :items_worn, -> { where worn: true }, class_name: 'InventoryItem'  
+           -> { wearable },
+           class_name: 'Item',
+           source: :item,
+           through: :inventory_items
+  has_many :items_unworn, -> { where worn: false }, class_name: 'InventoryItem'
+  has_many :items_worn, -> { where worn: true }, class_name: 'InventoryItem'
   has_many :unworn, through: :items_unworn, class_name: 'Item', source: :item
   has_many :worn, through: :items_worn, class_name: 'Item', source: :item
 
   def by_keyword(keyword)
-    Inventory.where(id: self.id).first.items.by_keyword(keyword).first
+    Inventory.where(id: id).first.items.by_keyword(keyword).first
   end
 
   def no_items?
@@ -38,7 +37,7 @@ class Inventory < ActiveRecord::Base
   end
 
   def remove_item(item, qty)
-    InventoryItem.delete(Inventory.where(id: self.id).first.inventory_items.where(item_id: item.id).limit(qty))
+    InventoryItem.delete(Inventory.where(id: id).first.inventory_items.where(item_id: item.id).limit(qty))
   end
 
   def possesses?(item, qty)
@@ -46,7 +45,7 @@ class Inventory < ActiveRecord::Base
   end
 
   def add_item(item, qty)
-    values = [].fill({inventory_id: self.id, item_id: item.id}, 0, qty)
+    values = [].fill({ inventory_id: id, item_id: item.id }, 0, qty)
     InventoryItem.create(values)
   end
 
@@ -55,7 +54,6 @@ class Inventory < ActiveRecord::Base
   end
 
   def has_item?(keyword)
-    Inventory.where(id: self.id).first.items.by_keyword(keyword).first.present?
+    Inventory.where(id: id).first.items.by_keyword(keyword).first.present?
   end
-
 end

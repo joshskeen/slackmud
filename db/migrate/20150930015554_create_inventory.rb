@@ -1,6 +1,6 @@
 class CreateInventory < ActiveRecord::Migration
   def change
-    create_table :inventories do |t|
+    create_table :inventories do |_t|
     end
   end
 end
