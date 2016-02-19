@@ -49,6 +49,18 @@ describe EmoteCommand do
       end
     end
   end
+  context 'cackling' do
+    let(:emote) { 'cackle' }
+
+    context 'with no target' do
+      it 'performs an emote' do
+        allow(slack_request).to receive(:text).and_return("emote #{emote}")
+        expect(slack_messenger).to receive(:msg_room).with(room.slackid, 'josh skeen throws back his head and cackles with insane glee!')
+        expect(game_command.perform).to eq 'You cackle gleefully.'
+      end
+    end
+
+  end
   context 'smirking' do
     let(:emote) { 'smirk' }
     context 'with no target' do
