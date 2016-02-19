@@ -47,6 +47,11 @@ class Player < ActiveRecord::Base
     inventory.has_item?(keyword)
   end
 
+  def third_person_intensive_alt
+    return "him" if gender == "male"
+    return "her" if gender == "female"
+    "itself"
+  end
   def third_person_intensive
     return "himself" if gender == "male"
     return "herself" if gender == "female"

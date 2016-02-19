@@ -21,7 +21,7 @@ class EmoteCommand < GameCommandBase
   def format(format_string)
     return if format_string.blank?
     format_string = format_string.gsub(/\$n/, player.name)
-    format_string = format_string.gsub(/\$m/, player.third_person_intensive)
+    format_string = format_string.gsub(/\$m/, player.third_person_intensive_alt)
     format_string = format_string.gsub(/\$s/, player.third_person_possessive)
     if target_player_in_room.present?
       format_string = format_string.gsub(/\$S/, target_player_in_room.name + "'s")
