@@ -693,7 +693,6 @@ You can't find the victim of your frustrations.
 You swear at your own mistakes.
 $n starts swearing at $mself.  Why don't you help?
 
-
 pray 0 0
 You feel righteous, and maybe a little foolish.
 $n begs and grovels to the powers that be.
