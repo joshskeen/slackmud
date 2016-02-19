@@ -50,7 +50,7 @@ class Player < ActiveRecord::Base
   def third_person_intensive_alt
     return "him" if gender == "male"
     return "her" if gender == "female"
-    "itself"
+    "it"
   end
   def third_person_intensive
     return "himself" if gender == "male"
