@@ -1,0 +1,17 @@
+AllCops:
+  Include:
+    - Rakefile
+    - config.ru
+  Exclude:
+    - db/**
+    - config/**
+    - spec/fixtures/**/*
+Documentation:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+Style/NegatedIf:
+  Enabled: false
+Style/TrailingComma:
+  Enabled: false

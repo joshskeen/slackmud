@@ -13,6 +13,7 @@ class GameCommand < GameCommandBase
       "inventory": InventoryCommand,
       "eat": EatCommand,
       "drink": EatCommand,
+      "emote": EmoteCommand,
       "cast": CastCommand,
       "materialize": MaterializeCommand,
     }.with_indifferent_access

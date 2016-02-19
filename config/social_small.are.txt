@@ -1,0 +1,29 @@
+Gaaack!
+$n gacks with dismay!
+Appalled, you gack at $N.
+$n gacks expressively, shooting $N a dismayed look.
+$n gacks, and looks your way, dismayed.
+That person isn't here.
+*GACK!*
+Appalled, $n gacks at $mself!
+
+kiss 0 0
+Isn't there someone you want to kiss?
+$
+You kiss $M.
+$n kisses $N.
+$n kisses you.
+Never around when required.
+All the lonely people :(
+#
+
+bounce 0 0
+BOIINNNNNNGG!
+$n bounces around with a happy smile.
+You bounce onto $S lap and wiggle about.
+$n bounces onto $N's lap and wiggles about.
+$n bounces onto your lap and wiggles about.
+You don't see your plaything.
+You bounce your head like a basketball.
+$n plays basketball with $s head.
+

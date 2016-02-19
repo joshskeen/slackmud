@@ -1,6 +1,8 @@
 en:
   hello: "Hello world"
   game:
+    emote_command:
+      emote_not_found: I don't know how to do that!
     materialize_command:
       immortal_required: You must be immortal to do that!
       not_found: You can't materialize one of those!
