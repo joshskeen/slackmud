@@ -58,6 +58,12 @@ class Player < ActiveRecord::Base
     "itself"
   end
 
+  def third_person_subject
+    return "he" if gender == "male"
+    return "she" if gender == "female"
+    "it"
+  end
+  
   def third_person_possessive
     return "his" if gender == "male"
     return "her" if gender == "female"

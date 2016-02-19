@@ -23,6 +23,7 @@ class EmoteCommand < GameCommandBase
     format_string = format_string.gsub(/\$n/, player.name)
     format_string = format_string.gsub(/\$m/, player.third_person_intensive_alt)
     format_string = format_string.gsub(/\$s/, player.third_person_possessive)
+    format_string = format_string.gsub(/\$e/, player.third_person_subject)
     if target_player_in_room.present?
       format_string = format_string.gsub(/\$S/, target_player_in_room.name + "'s")
       format_string = format_string.gsub(/\$N/, target_player_in_room.name)
@@ -57,7 +58,6 @@ class EmoteCommand < GameCommandBase
   def social_target_found_room_message
     format social[4]
   end
-
 
   def social_no_target_player_message
     format social[1]
