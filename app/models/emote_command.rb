@@ -25,8 +25,9 @@ class EmoteCommand < GameCommandBase
 
   def social_target_self_room_message
     format_string = social[8]
-    format_string = format_string.gsub(/\$n/, player.name).gsub(/\$s/, player.third_person_possessive)
     format_string
+      .gsub(/\$n/, player.name)
+      .gsub(/\$s/, player.third_person_possessive)
   end
 
   # snicker 0 0
@@ -50,7 +51,6 @@ class EmoteCommand < GameCommandBase
     return nil if format_string.blank?
     format_string.gsub(/\$n/, player.name)
       .gsub(/\$N/, target_player_in_room.name)
-      .gsub(/\$N/, target_player_in_room.name)
   end
 
   def social_no_target_player_message
@@ -61,6 +61,7 @@ class EmoteCommand < GameCommandBase
     format_string = social[2]
     return nil if format_string.blank?
     format_string.gsub(/\$n/, player.name)
+      .gsub(/\$s/, player.third_person_possessive)
   end
 
   def social_target_not_found_player_message
