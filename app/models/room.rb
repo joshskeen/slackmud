@@ -53,6 +53,16 @@ class Room < ActiveRecord::Base
     return room
   end
 
+  def self.create_room_from_channel(channel)
+    attrs = {
+      title: channel["name"], 
+      description: channel["purpose"]["value"],
+      slackid: channel["id"],
+      inventory: Inventory.create
+    }
+    Room.create(attrs)
+  end
+
   def self.room_from_channel_info_response(channel_info)
     response = channel_info[:channel]
     attrs = {

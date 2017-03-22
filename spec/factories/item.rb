@@ -108,7 +108,7 @@ FactoryGirl.define do
     factory :item_loaf do
       name "loaf of bread"
       shortdesc "loaf of bread"
-      longdesc "A freshly baked loaf of bread looks good enough to eat!"
+      longdesc "a freshly baked loaf of bread looks good enough to eat!"
       properties {
         [
           FactoryGirl.create(:edible_food)

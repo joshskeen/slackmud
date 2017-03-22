@@ -1,16 +1,6 @@
 class EmoteCommand < GameCommandBase
   include PlayerUtil
 
-  # smirk 0 0
-  # You smirk.
-  # $n smirks.
-  # You smirk at $S saying.
-  # $n smirks at $N's saying.
-  # $n smirks at your saying.
-  # You want to smirk to whom?
-  # You smirk at yourself.  Okay.....
-  # $n smirks at $s own 'wisdom'.
-
   def perform
     room_message
     user_message
@@ -25,9 +15,10 @@ class EmoteCommand < GameCommandBase
     format_string = format_string.gsub(/\$s/, player.third_person_possessive)
     format_string = format_string.gsub(/\$e/, player.third_person_subject)
     if target_player_in_room.present?
-      format_string = format_string.gsub(/\$S/, target_player_in_room.name + "'s")
       format_string = format_string.gsub(/\$N/, target_player_in_room.name)
       format_string = format_string.gsub(/\$M/, target_player_in_room.name)
+      format_string = format_string.gsub(/\$S/, target_player_in_room.name + "'s")
+      format_string = format_string.gsub(/\$E/, target_player_in_room.third_person_subject)
     end
     format_string
   end
@@ -40,16 +31,6 @@ class EmoteCommand < GameCommandBase
   def social_target_self_room_message
     format social[8]
   end
-
-  # snicker 0 0
-  # You snicker softly.
-  # $n snickers softly.
-  # You snicker with $M about your shared secret.
-  # $n snickers with $N about their shared secret.
-  # $n snickers with you about your shared secret.
-  # Huh?
-  # You snicker at your own evil thoughts.
-  # $n snickers at $s own evil thoughts.
 
   def social_target_found_player_message
     format social[3]

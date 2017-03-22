@@ -15,6 +15,7 @@ gem 'slack-api'
 gem 'active_model_serializers'
 #used in seeds file
 gem 'factory_girl_rails'
+gem 'guess'
 
 group :development,:test do
   gem 'annotate'
@@ -23,6 +24,7 @@ group :development,:test do
 end
 
 group :test do
+  gem 'factory_girl'
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'vcr'

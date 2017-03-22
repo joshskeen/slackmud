@@ -74,6 +74,7 @@ GEM
       thor (~> 0.19.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    guess (0.1.1)
     i18n (0.7.0)
     json (1.8.3)
     loofah (2.0.3)
@@ -179,8 +180,10 @@ DEPENDENCIES
   byebug
   database_cleaner
   dotenv-rails
+  factory_girl
   factory_girl_rails
   foreman
+  guess
   pg
   pry-byebug
   puma
@@ -191,5 +194,8 @@ DEPENDENCIES
   vcr
   webmock
 
+RUBY VERSION
+   ruby 2.2.2p95
+
 BUNDLED WITH
-   1.10.6
+   1.13.1

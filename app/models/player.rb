@@ -13,19 +13,19 @@
 #
 
 class Player < ActiveRecord::Base
-  include PlayerFormatUtil, 
-    FormatUtils
+  include PlayerFormatUtil,
+          FormatUtils
   belongs_to :inventory
 
   delegate :add_item,
-    :remove_item,
-    :possesses?,
-    :has_quantity?,
-    to: :inventory
+           :remove_item,
+           :possesses?,
+           :has_quantity?,
+           to: :inventory
 
-  scope :by_slackid, -> (slackid) {where(slackid: slackid)}
-  scope :by_name, -> (name) {
-    where("name LIKE ?", "%#{name}%")
+  scope :by_slackid, -> (slackid) { where(slackid: slackid) }
+  scope :by_name, lambda { |name|
+    where('name LIKE ?', "%#{name}%")
   }
 
   def item(keyword)
@@ -37,10 +37,10 @@ class Player < ActiveRecord::Base
   end
 
   def formatted_description
-    I18n.t 'game.player_formatted_description', 
-      description: description, 
-      details: player_details, 
-      equipment: player_equipment_description
+    I18n.t 'game.player_formatted_description',
+           description: description,
+           details: player_details,
+           equipment: player_equipment_description
   end
 
   def has_item?(keyword)
@@ -48,42 +48,46 @@ class Player < ActiveRecord::Base
   end
 
   def third_person_intensive_alt
-    return "him" if gender == "male"
-    return "her" if gender == "female"
-    "it"
+    return 'him' if gender == 'male'
+    return 'her' if gender == 'female'
+    'it'
   end
+
   def third_person_intensive
-    return "himself" if gender == "male"
-    return "herself" if gender == "female"
-    "itself"
+    return 'himself' if gender == 'male'
+    return 'herself' if gender == 'female'
+    'itself'
   end
 
   def third_person_subject
-    return "he" if gender == "male"
-    return "she" if gender == "female"
-    "it"
+    return 'he' if gender == 'male'
+    return 'she' if gender == 'female'
+    'it'
+  end
+
+  def third_person_possessive
+    return 'his' if gender == 'male'
+    return 'her' if gender == 'female'
+    'its'
   end
   
-  def third_person_possessive
-    return "his" if gender == "male"
-    return "her" if gender == "female"
-    "its"
+  def self.create_player_by_slack_info(slackid, slackname)
+    create(slackid: slackid,
+                    gender: Guess.gender(slackname)[:gender],
+                    description: "There's nothing special about them.",
+                    name: slackname,
+                    inventory: Inventory.create)
   end
 
   def self.find_or_create_player_by_slack_info(slackid, slackname)
     player = by_slackid(slackid).first
     if player.nil?
-      player = create(slackid: slackid, 
-                      gender: "male",
-                      description: "There's nothing special about them.",
-                      name: slackname, 
-                      inventory: Inventory.create)
+      create_player_by_slack_info(slackid, slackname)
     end
-    return player
+    player
   end
 
   def self.find_or_create_player_by_slack_request(slack_request)
     find_or_create_player_by_slack_info(slack_request.slackid, slack_request.slackname)
   end
-
 end

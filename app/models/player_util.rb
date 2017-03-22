@@ -48,6 +48,7 @@ module PlayerUtil
     end
 
     def target_player_in_room
+      return @player if @target == "self"
       room.player_by_name(@target)
     end
 

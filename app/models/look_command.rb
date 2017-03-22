@@ -12,10 +12,10 @@ class LookCommand < GameCommandBase
 
   def player_message
     objectname = format_objectname
-    objectname = "yourself" if looks_self? 
+    objectname = 'yourself' if looks_self?
     I18n.t 'game.look_command.success',
-      description: @found_subject.formatted_description,
-      objectname: objectname
+           description: @found_subject.formatted_description,
+           objectname: objectname
   end
 
   def room_message
@@ -27,10 +27,10 @@ class LookCommand < GameCommandBase
       return I18n.t 'game.look_command.slack_success_room', playername: player.name
     end
     objectname = format_objectname
-    objectname = player.third_person_intensive if looks_self? 
-    I18n.t 'game.look_command.slack_success', 
-      playername: player.name, 
-      objectname: objectname
+    objectname = player.third_person_intensive if looks_self?
+    I18n.t 'game.look_command.slack_success',
+           playername: player.name,
+           objectname: objectname
   end
 
   def format_objectname
@@ -40,7 +40,7 @@ class LookCommand < GameCommandBase
   end
 
   def looks_room?
-    @arguments.blank? || @arguments == "room"
+    @arguments.blank? || @arguments == 'room'
   end
 
   def looks_self?
@@ -49,14 +49,13 @@ class LookCommand < GameCommandBase
 
   def find_subject
     return room if looks_room?
-    return player if @arguments == "self"
-    return player_by_name if @arguments.present? and player_by_name.present?
+    return player if @arguments == 'self'
+    return player_by_name if @arguments.present? && player_by_name.present?
     return player_item if player_item.present?
-    return room_item if room_item.present?  
+    return room_item if room_item.present?
   end
 
   def player_by_name
     room.players.by_name(@arguments).first
   end
-
 end

@@ -23,7 +23,6 @@ class GameCommandBase
     @target.nil?
   end
 
-
   def extract_target
     return @slack_text_array.pop if @slack_text_array.length > 1
   end
