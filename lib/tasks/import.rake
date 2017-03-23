@@ -71,6 +71,7 @@ namespace :import do
                      :item_cloak,
                      :item_klondike,
                      :item_tunic,
+                     :item_apple,
                      :item_loincloth,
                      :item_birthday_cake]
     default_items.each do |item|
