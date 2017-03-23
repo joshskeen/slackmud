@@ -60,6 +60,12 @@ en:
     cast_command:
       cast_what: Cast what?!
       spell_not_found: You don't know that spell!
+    spell_manifest:
+      immortal_required: You must be immortal to do that!
+      not_found: You can't manifest one of those!
+      success: "You feel your will reach into the etheric realm successfully..."
+      slack_success: "%{playername} points %{gender} finger at the ground willfully. "
+      worker_success: "In a flash of light, %{itemname} springs into existence where %{playername} pointed!"
     spell_bless:
       no_target: "Whom or what do you want to bless??"
       bless_fade_message: "The divine light surrounding %{target} fades to normal."

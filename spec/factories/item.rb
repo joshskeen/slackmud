@@ -12,7 +12,7 @@ FactoryGirl.define do
 
     factory :item_cloak do
       name "druid cloak"
-      shortdesc "cloak made from dryad skin"
+      shortdesc "a cloak made from dryad skin"
       longdesc "a cloak made from dryad skin lies crumpled on the ground here."
       properties {
         [
@@ -107,7 +107,7 @@ FactoryGirl.define do
 
     factory :item_apple do
       name "apple"
-      shortdesc "apple"
+      shortdesc "a red apple"
       longdesc "a delicious looking red apple lies here ready to be eaten."
       properties {
         [
@@ -118,7 +118,7 @@ FactoryGirl.define do
 
     factory :item_birthday_cake do
       name "slice of birthday cake"
-      shortdesc "slice of birthday cake"
+      shortdesc "a slice of birthday cake"
       longdesc "a neatly cut slice of birthday cake lies here with a single lit candle on top of it."
       properties {
         [
@@ -128,7 +128,7 @@ FactoryGirl.define do
     end
     factory :item_loaf do
       name "loaf of bread"
-      shortdesc "loaf of bread"
+      shortdesc "a loaf of bread"
       longdesc "a freshly baked loaf of bread looks good enough to eat!"
       properties {
         [
