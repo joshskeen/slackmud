@@ -5,7 +5,7 @@ class SpellManifest < GameCommandBase
       item = Item.find(item_id)
       room = Room.where(slackid: room_slackid).first
       room.inventory.items << item
-      slack_messenger.msg_room(room_id, message)
+      slack_messenger.msg_room(room_slackid, message)
     end
   end
 
