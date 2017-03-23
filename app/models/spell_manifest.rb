@@ -1,8 +1,9 @@
 class SpellManifest < GameCommandBase
 
   class SpellManifestWorker < BaseWorker
-    def perform(room_id, item_id, message)
+    def perform(room_slackid, item_id, message)
       item = Item.find(item_id)
+      room = Room.where(slackid: room_slackid).first
       room.inventory.items << item
       slack_messenger.msg_room(room_id, message)
     end
