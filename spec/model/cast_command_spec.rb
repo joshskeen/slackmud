@@ -54,9 +54,8 @@ describe CastCommand do
   describe SpellManifest do
     it 'manifests objects!' do
       allow(slack_request).to receive(:text).and_return('cast manifest apple')
-      expect(slack_messenger).to receive(:msg_room).with("C03RCDX1A", "josh skeen points his finger at the ground willfully. ")
+      expect(slack_messenger).to receive(:msg_room).with("C03RCDX1A", "josh skeen points his finger at the ground. In a flash of light, a red apple springs into existence!")
       expect(game_command.perform).to include 'You feel your will reach into the etheric realm successfully...'
-      expect(SpellManifest::SpellManifestWorker).to have_enqueued_job("C03RCDX1A", "In a flash of light, a red apple springs into existence where josh skeen pointed!")
     end
   end
 end
