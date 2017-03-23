@@ -2,10 +2,9 @@ class SpellManifest < GameCommandBase
 
   class SpellManifestWorker < BaseWorker
     def perform(room_id, item_id, message)
-      room = Room.find(room_id)
       item = Item.find(item_id)
       room.inventory.items << item
-      slack_messenger.msg_room(room.slackid, message)
+      slack_messenger.msg_room(room_id, message)
     end
   end
 
