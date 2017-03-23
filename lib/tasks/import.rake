@@ -27,6 +27,7 @@ namespace :import do
 
   desc 'import rooms from slack to game'
   task import_rooms: :environment do
+    ActiveRecord::Base.logger.level = 1
     puts 'importing rooms'
     slack = Slack::Client.new
     slack.channels_list['channels'].each do |channel|
@@ -41,6 +42,7 @@ namespace :import do
 
   desc 'add players to rooms'
   task add_players_to_rooms: :environment do
+    ActiveRecord::Base.logger.level = 1
     puts '-> adding players to rooms'
     slack = Slack::Client.new
     slack.channels_list['channels'].each do |channel|
@@ -59,6 +61,7 @@ namespace :import do
 
   desc 'adds default items to game'
   task add_items_to_game: :environment do
+    ActiveRecord::Base.logger.level = 1
     puts '-> adding default items'
     default_items = [:item_wizardhat,
                      :item_loaf,
@@ -71,6 +74,7 @@ namespace :import do
                      :item_loincloth,
                      :item_birthday_cake]
     default_items.each do |item|
+      puts "importing #{item}"
       begin
         FactoryGirl.create(item)
       rescue => e
