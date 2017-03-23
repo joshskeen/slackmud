@@ -1,1 +1,2 @@
-web: bundle exec puma -b tcp://0.0.0.0:$PORT
+web: bundle exec puma -C config/puma.rb
+

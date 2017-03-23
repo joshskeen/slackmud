@@ -16,6 +16,8 @@ gem 'active_model_serializers'
 #used in seeds file
 gem 'factory_girl_rails'
 gem 'guess'
+gem 'redis'
+gem 'resque', require: 'resque/server'
 
 group :development,:test do
   gem 'annotate'

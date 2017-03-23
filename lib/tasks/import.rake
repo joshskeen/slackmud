@@ -1,18 +1,29 @@
 namespace :import do
+
+  require './config/genders'
+
   desc 'import users from slack to game'
   task import_players: :environment do
-    puts '-> importing users'
+    ActiveRecord::Base.logger.level = 1
+    puts '-> importing players'
     slack = Slack::Client.new
-    # import users
+    unknown_genders = {}
     slack.users_list['members'].each do |member|
       begin
-        puts 'importing ' + member['name']
-        Player.create_player_by_slack_info(member['id'], member['name'])
+        membername = member["name"]
+        player_gender = Guess.gender(member["real_name"])[:gender]
+        player_gender = Genders::GENDER_LIST[member["name"]] if player_gender == "unknown"
+        if player_gender == "unknown"
+          unknown_genders[membername] = player_gender
+          player_gender = "male"
+        end
+        Player.create_player_by_slack_info(member['id'], membername, player_gender)
       rescue
         puts 'member already existed for ' + member['name']
       end
     end
-    # import rooms
+    puts "import complete. unknown genders: "
+    puts unknown_genders.to_s
   end
 
   desc 'import rooms from slack to game'
@@ -47,45 +58,28 @@ namespace :import do
     end
   end
 
+  desc 'adds default items to game'
+  task add_items_to_game: :environment do
+    puts '-> adding default items'
+    FactoryGirl.create(:item_tunic)
+    FactoryGirl.create(:item_cloak)
+    FactoryGirl.create(:item_loaf)
+    FactoryGirl.create(:item_loincloth)
+  end
+
   desc 'import world'
   task import_world: :environment do
     begin
-    Rake::Task["import:import_players"].invoke
-    Rake::Task["import:import_rooms"].invoke
-    Rake::Task["import:add_players_to_rooms"].invoke
+      ActiveRecord::Base.logger.level = 1
+      Rake::Task['import:import_players'].invoke
+      Rake::Task['import:import_rooms'].invoke
+      Rake::Task['import:add_players_to_rooms'].invoke
+      Rake::Task['import:add_items_to_game'].invoke
     rescue => e
-      puts "something went horribly wrong!"
+      puts 'something went horribly wrong!'
       puts e
     end
-    puts "import complete!"
+    puts 'import complete!'
   end
 
-  #desc 'import players from slack'
-  #task import_world: :environment do
-    #slack = Slack::Client.new
-    #channels = slack.channels_list
-    #rooms_imported = 0
-    #channels['channels'].each do |channel|
-      #slackid = channel['id']
-      #print "importing #{slackid} \n"
-      #room = Room.find_or_create_by_slackid(slackid)
-      #sleep 1 # avoid rate limit issues with slack api
-      #rooms_imported += 1
-      #members = slack.channels_info(channel: slackid)['channel']['members']
-      #players_created = 0
-      #players = []
-      #members.each do |member_slackid|
-        #slackname = slack.users_info(user: member_slackid)['user']['name']
-        #player = Player.find_or_create_player_by_slack_info(member_slackid, slackname)
-        #print "created player #{player.name}, #{player.slackid} \n"
-        #sleep 2 # avoid rate limit issues with slack api
-        #players_created += 1
-        #players << player
-      #end
-      #room.players = players
-      #room.save
-      #print "total players imported: #{players_created} \n"
-    #end
-    #print "total rooms imported: #{rooms_imported} \n\n"
-  #end
 end

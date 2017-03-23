@@ -71,9 +71,9 @@ class Player < ActiveRecord::Base
     'its'
   end
   
-  def self.create_player_by_slack_info(slackid, slackname)
+  def self.create_player_by_slack_info(slackid, slackname, gender)
     create(slackid: slackid,
-                    gender: Guess.gender(slackname)[:gender],
+                    gender: gender,
                     description: "There's nothing special about them.",
                     name: slackname,
                     inventory: Inventory.create)
