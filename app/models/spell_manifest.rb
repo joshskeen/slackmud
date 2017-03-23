@@ -13,7 +13,7 @@ class SpellManifest < GameCommandBase
     return I18n.t 'game.spell_manifest.immortal_required' if !player.immortal?
     return I18n.t 'game.spell_manifest.not_found' if !item_exists?
     slack_messenger.msg_room(room.slackid, format_room_message)
-    SpellManifestWorker.perform_in(1.second.from_now,
+    SpellManifestWorker.perform_in(2.seconds.from_now,
                                    room.slackid,
                                    item.id, 
                                    worker_success_message)
