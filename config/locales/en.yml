@@ -68,8 +68,7 @@ en:
       success: |
         You begin to utter the names of powerful ancient deities as you prepare to bless %{target}!
       slack_success: |
-        %{playername} begins to utter the names of ancient deities:w
-        as he prepares a powerful blessing!
+        %{playername} begins to utter the names of ancient deities as he prepares a powerful blessing!
     spell_create_beer:
       success: |
        You move your hands in an intricate series of gestures. Suddenly, %{beername} materializes out of thin air!
