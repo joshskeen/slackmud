@@ -60,7 +60,6 @@ namespace :import do
   desc 'adds default items to game'
   task add_items_to_game: :environment do
     puts '-> adding default items'
-    begin
     default_items = [:item_wizardhat,
                      :item_loaf,
                      :item_fedora,
@@ -71,9 +70,12 @@ namespace :import do
                      :item_tunic,
                      :item_loincloth,
                      :item_birthday_cake]
-    default_items.map { |item| FactoryGirl.create(item) }
-    rescue => e
-      puts "a duplicate item already existed for #{e}"
+    default_items.each do |item|
+      begin
+        FactoryGirl.create(item)
+      rescue => e
+        puts "error while adding item : #{item}, #{e}"
+      end
     end
   end
 
