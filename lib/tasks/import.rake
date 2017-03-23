@@ -1,5 +1,4 @@
 namespace :import do
-
   require './config/genders'
 
   desc 'import users from slack to game'
@@ -10,19 +9,19 @@ namespace :import do
     unknown_genders = {}
     slack.users_list['members'].each do |member|
       begin
-        membername = member["name"]
-        player_gender = Guess.gender(member["real_name"])[:gender]
-        player_gender = Genders::GENDER_LIST[member["name"]] if player_gender == "unknown"
-        if player_gender == "unknown"
+        membername = member['name']
+        player_gender = Guess.gender(member['real_name'])[:gender]
+        player_gender = Genders::GENDER_LIST[member['name']] if player_gender == 'unknown'
+        if player_gender == 'unknown'
           unknown_genders[membername] = player_gender
-          player_gender = "male"
+          player_gender = 'male'
         end
         Player.create_player_by_slack_info(member['id'], membername, player_gender)
       rescue
         puts 'member already existed for ' + member['name']
       end
     end
-    puts "import complete. unknown genders: "
+    puts 'import complete. unknown genders: '
     puts unknown_genders.to_s
   end
 
@@ -61,10 +60,21 @@ namespace :import do
   desc 'adds default items to game'
   task add_items_to_game: :environment do
     puts '-> adding default items'
-    FactoryGirl.create(:item_tunic)
-    FactoryGirl.create(:item_cloak)
-    FactoryGirl.create(:item_loaf)
-    FactoryGirl.create(:item_loincloth)
+    begin
+    default_items = [:item_wizardhat,
+                     :item_loaf,
+                     :item_fedora,
+                     :item_sculpin,
+                     :item_magichat,
+                     :item_cloak,
+                     :item_klondike,
+                     :item_tunic,
+                     :item_loincloth,
+                     :item_birthday_cake]
+    default_items.map { |item| FactoryGirl.create(item) }
+    rescue => e
+      puts "a duplicate item already existed for #{e}"
+    end
   end
 
   desc 'import world'
@@ -81,5 +91,4 @@ namespace :import do
     end
     puts 'import complete!'
   end
-
 end
