@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322154359) do
+ActiveRecord::Schema.define(version: 20170323005800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(version: 20170322154359) do
   end
 
   add_index "items", ["shortdesc"], name: "index_items_on_shortdesc", unique: true, using: :btree
+
+  create_table "player_room_effects", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "room_id"
+    t.string  "effect"
+  end
 
   create_table "players", force: :cascade do |t|
     t.string   "gender"

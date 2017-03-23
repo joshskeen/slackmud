@@ -56,10 +56,20 @@ en:
       quantity_not_found: "You don't have that many to give!"
       target_not_found: "I don't see anyone here with that name to give to!"
       success: "You give %{itemdesc} to %{target} (%{qty})"
-      slack_success: "%{name} gives %{itemdesc} to %{target}." 
-    cast_command: 
+      slack_success: "%{name} gives %{itemdesc} to %{target}."
+    cast_command:
       cast_what: Cast what?!
       spell_not_found: You don't know that spell!
+    spell_bless:
+      no_target: "Whom or what do you want to bless??"
+      bless_fade_message: "The divine light surrounding %{target} fades to normal."
+      blessed_message: "A divine light surrounds %{target} in a shimmering white aura. %{target_gender} has been blessed by the ancient gods!"
+      target_not_found: "Nothing with that name is here to bless!"
+      success: |
+        You begin to utter the names of powerful ancient deities as you prepare to bless %{target}!
+      slack_success: |
+        %{playername} begins to utter the names of ancient deities:w
+        as he prepares a powerful blessing!
     spell_create_beer:
       success: |
        You move your hands in an intricate series of gestures. Suddenly, %{beername} materializes out of thin air!

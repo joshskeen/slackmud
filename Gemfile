@@ -26,6 +26,7 @@ group :development,:test do
 end
 
 group :test do
+  gem 'rspec-sidekiq'
   gem 'factory_girl'
   gem 'rspec-rails'
   gem 'database_cleaner'

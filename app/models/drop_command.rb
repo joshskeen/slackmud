@@ -9,13 +9,12 @@ class DropCommand < GameCommandBase
     I18n.t 'game.drop_command.success', itemname: item.shortdesc, qty: quantity
   end
 
-  private 
+  private
 
   def format_room_message
     I18n.t 'game.drop_command.slack_success',
-      playername: player.name, 
-      itemname: item.shortdesc,
-      qty: quantity
+           playername: player.name,
+           itemname: item.shortdesc,
+           qty: quantity
   end
-
 end

@@ -105,6 +105,17 @@ FactoryGirl.define do
       }
     end
 
+    factory :item_apple do
+      name "apple"
+      shortdesc "apple"
+      longdesc "a delicious looking red apple lies here ready to be eaten."
+      properties {
+        [
+          FactoryGirl.create(:edible_food)
+        ]
+      }
+    end
+
     factory :item_birthday_cake do
       name "slice of birthday cake"
       shortdesc "slice of birthday cake"

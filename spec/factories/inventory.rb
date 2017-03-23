@@ -6,6 +6,7 @@ FactoryGirl.define do
           FactoryGirl.create(:item_loaf),
           Item.first_by_keyword("loaf"),
           FactoryGirl.create(:item_klondike), 
+          FactoryGirl.create(:item_apple), 
           FactoryGirl.create(:item_sculpin), 
           FactoryGirl.create(:item_fedora), 
         ]
@@ -15,6 +16,7 @@ FactoryGirl.define do
       items {
         [
           FactoryGirl.create(:item_tunic),
+          FactoryGirl.create(:item_apple),
           FactoryGirl.create(:item_loaf),
           FactoryGirl.create(:item_cloak), 
           FactoryGirl.create(:item_wizardhat), 
