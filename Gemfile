@@ -17,7 +17,7 @@ gem 'active_model_serializers'
 gem 'factory_girl_rails'
 gem 'guess'
 gem 'redis'
-gem 'resque', require: 'resque/server'
+gem 'sidekiq'
 
 group :development,:test do
   gem 'annotate'
