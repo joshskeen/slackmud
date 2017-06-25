@@ -44,7 +44,7 @@ describe 'Give Command' do
       Item.first_by_keyword("loaf")
     }
     it 'give a single item' do
-      expect(slack_messenger).to receive(:msg_room).with(room.slackid,"josh skeen gives loaf of bread to joe blow.")
+      expect(slack_messenger).to receive(:msg_room).with(room.slackid,"josh skeen gives a loaf of bread to joe blow.")
       allow(slack_request).to receive(:text).and_return("give loaf joe")
       expect(game_command.perform).to eq I18n.t('game.give_command.success', itemdesc: item.shortdesc, target: joe.name, qty: 1)
       expect(joe.possesses?(item, 1)).to eq true
@@ -52,9 +52,9 @@ describe 'Give Command' do
     end
 
     it 'give multiple items' do
-      expect(slack_messenger).to receive(:msg_room).with(room.slackid, "josh skeen gives loaf of bread to joe blow.")
+      expect(slack_messenger).to receive(:msg_room).with(room.slackid, "josh skeen gives a loaf of bread to joe blow.")
       allow(slack_request).to receive(:text).and_return("give 2 loaf joe")
-      expect(game_command.perform).to eq I18n.t('game.give_command.success', itemdesc: item.name, target: joe.name, qty: 2)
+      expect(game_command.perform).to eq I18n.t('game.give_command.success', itemdesc: "a " + item.name, target: joe.name, qty: 2)
       expect(joe.possesses?(item, 2)).to eq true
       expect(player.possesses?(item, 0)).to eq true
     end

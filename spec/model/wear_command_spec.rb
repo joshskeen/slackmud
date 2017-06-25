@@ -22,8 +22,8 @@ describe WearCommand do
 
     it 'displays a success message' do
       allow(slack_request).to receive(:text).and_return('wear cloak')
-      expect(slack_messenger).to receive(:msg_room).with(room.slackid, 'josh skeen wears cloak made from dryad skin on his neck.')
-      expect(game_command.perform).to eq 'You wear cloak made from dryad skin on your neck.'
+      expect(slack_messenger).to receive(:msg_room).with(room.slackid, 'josh skeen wears a cloak made from dryad skin on his neck.')
+      expect(game_command.perform).to eq 'You wear a cloak made from dryad skin on your neck.'
       allow(slack_request).to receive(:text).and_return('wear hat')
       expect(slack_messenger).to receive(:msg_room).with(room.slackid, 'josh skeen wears a purple wizardhat on his head.')
       expect(game_command.perform).to eq 'You wear a purple wizardhat on your head.'

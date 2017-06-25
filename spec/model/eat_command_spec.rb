@@ -26,8 +26,8 @@ describe 'Eat Command' do
     describe 'success' do
       it 'eats a single item' do
         allow(slack_request).to receive(:text).and_return("eat loaf")
-        expect(slack_messenger).to receive(:msg_room).with(room.slackid, "josh skeen eats loaf of bread. Delicious!")
-        expect(game_command.perform).to eq I18n.t('game.eat_command.success', shortdesc: "loaf of bread", actiontype: "eat")
+        expect(slack_messenger).to receive(:msg_room).with(room.slackid, "josh skeen eats a loaf of bread. Delicious!")
+        expect(game_command.perform).to eq I18n.t('game.eat_command.success', shortdesc: "a loaf of bread", actiontype: "eat")
         player.reload
         expect(player.inventory.items.by_keyword("loaf").count).to eq 1
       end

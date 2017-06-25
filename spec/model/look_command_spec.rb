@@ -15,7 +15,8 @@ describe LookCommand do
   let(:room){ FactoryGirl.create(:room, players: [player, joe], 
                                  inventory: room_inventory)}
 
-  let(:empty_room){ FactoryGirl.create(:room, 
+  let(:empty_room){ FactoryGirl.create(:room,
+                                       slackid: 'C03RCDX1B', 
                                        inventory: Inventory.create)}
 
   before(:each){
@@ -37,7 +38,7 @@ describe LookCommand do
   it "empty room" do
     allow(game).to receive(:room).and_return(empty_room)
     allow(slack_request).to receive(:text).and_return("look")
-    expect(slack_messenger).to receive(:msg_room).with(room.slackid, "josh skeen looks around.")
+    expect(slack_messenger).to receive(:msg_room).with(empty_room.slackid, "josh skeen looks around.")
     expect(game_command.perform).to eq I18n.t 'game.look_command.success',
       objectname: "the room", 
       description: empty_room.formatted_description
