@@ -6,6 +6,7 @@ describe CastCommand do
   let(:slack_request) { double(SlackRequest) }
   let(:slack_messenger) { double(SlackMessenger) }
   let(:player) { FactoryGirl.create(:player_with_inventory, immortal: true) }
+  let!(:effect_flying) { FactoryGirl.create(:effect_flying) }
   let(:joe) { FactoryGirl.create(:player_joe) }
   let(:item) { FactoryGirl.create(:item) }
   let(:room) { FactoryGirl.create(:room, players: [player, joe]) }
