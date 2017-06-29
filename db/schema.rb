@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323005800) do
+ActiveRecord::Schema.define(version: 20170629211714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "effects", force: :cascade do |t|
+    t.string "name"
+  end
+
+  add_index "effects", ["name"], name: "index_effects_on_name", unique: true, using: :btree
 
   create_table "inventories", force: :cascade do |t|
   end
@@ -37,6 +43,13 @@ ActiveRecord::Schema.define(version: 20170323005800) do
   end
 
   add_index "items", ["shortdesc"], name: "index_items_on_shortdesc", unique: true, using: :btree
+
+  create_table "player_effects", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "effect_id"
+  end
+
+  add_index "player_effects", ["player_id", "effect_id"], name: "index_player_effects_on_player_id_and_effect_id", unique: true, using: :btree
 
   create_table "player_room_effects", force: :cascade do |t|
     t.integer "player_id"

@@ -2,6 +2,7 @@ class CastCommand < GameCommandBase
   SPELLS = {
     "bless": SpellBless,
     "manifest": SpellManifest,
+    "levitate": SpellLevitate,
     "create beer": SpellCreateBeer
   }.with_indifferent_access
 

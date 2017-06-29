@@ -17,6 +17,9 @@ class Player < ActiveRecord::Base
           FormatUtils
   belongs_to :inventory
 
+  has_many :player_effects
+  has_many :effects, through: :player_effects
+
   delegate :add_item,
            :remove_item,
            :possesses?,
@@ -39,6 +42,7 @@ class Player < ActiveRecord::Base
   def formatted_description
     I18n.t 'game.player_formatted_description',
            description: description,
+           effects: player_effects_description,
            details: player_details,
            equipment: player_equipment_description
   end
@@ -70,20 +74,18 @@ class Player < ActiveRecord::Base
     return 'her' if gender == 'female'
     'its'
   end
-  
+
   def self.create_player_by_slack_info(slackid, slackname, gender)
     create(slackid: slackid,
-                    gender: gender,
-                    description: "There's nothing special about them.",
-                    name: slackname,
-                    inventory: Inventory.create)
+           gender: gender,
+           description: "There's nothing special about them.",
+           name: slackname,
+           inventory: Inventory.create)
   end
 
   def self.find_or_create_player_by_slack_info(slackid, slackname)
     player = by_slackid(slackid).first
-    if player.nil?
-      create_player_by_slack_info(slackid, slackname)
-    end
+    create_player_by_slack_info(slackid, slackname) if player.nil?
     player
   end
 

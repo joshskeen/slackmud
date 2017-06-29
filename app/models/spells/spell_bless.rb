@@ -9,8 +9,8 @@ class SpellBless < GameCommandBase
     return I18n.t 'game.spell_bless.no_target' if target? || slack_text_array.length == 2
     return I18n.t 'game.spell_bless.target_not_found' if !room_has_player?
     slack_messenger.msg_room(room.slackid, room_message)
-    SpellBlessWorker.perform_in(3.seconds.from_now, room.slackid, blessed_message)
-    SpellBlessWorker.perform_in(2.minutes.from_now, room.slackid, bless_fade_message)
+    SpellWorker.perform_in(3.seconds.from_now, room.slackid, blessed_message)
+    SpellWorker.perform_in(2.minutes.from_now, room.slackid, bless_fade_message)
     user_message
   end
 

@@ -13,6 +13,9 @@ en:
       %{inventory}
     formatted_inventory_count: |
       %{inventory} (%{count})
+    player_effects_description: |
+      ---effected by---
+      %{effects}
     player_equipment_description: |
       ---equipment---
       worn on head: %{head}
@@ -30,6 +33,7 @@ en:
       alignment: %{alignment}
     player_formatted_description: |
       %{description}
+      %{effects}
       %{details}
       %{equipment}
     room_formatted_description: |
@@ -65,6 +69,14 @@ en:
       not_found: You can't manifest one of those!
       success: "You feel your will reach into the etheric realm successfully..."
       slack_success: "%{playername} points %{gender} finger at the ground. In a flash of light, %{itemname} springs into existence!"
+    spell_levitate:
+      no_target: "Whom do you wish to levitate??"
+      fade_message: "%{target} falls slowly back to the ground."
+      target_not_found: "Nothing with that name is here to levitate!"
+      success: |
+        The gods manifest your will that %{target} take flight!
+      slack_success: "%{playername} utters the words 'ad patitur te fugere'. %{target} rises into the air!"
+      target_not_found: "Nothing with that name is here to levitate!"
     spell_bless:
       no_target: "Whom or what do you want to bless??"
       bless_fade_message: "The divine light surrounding %{target} fades to normal."

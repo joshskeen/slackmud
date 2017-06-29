@@ -1,6 +1,18 @@
 FactoryGirl.define do
   factory :player do
 
+    factory :player_with_effect do
+      name "johnny feelgood"
+      gender "male"
+      description "low and behold!"
+      slackid "U03RCDX0U"
+      inventory {FactoryGirl.create(:inventory_with_food)}
+      effects {
+        [
+          FactoryGirl.create(:effect)
+        ]
+      }
+    end
     factory :player_with_food do
       name "josh skeen"
       gender "male"

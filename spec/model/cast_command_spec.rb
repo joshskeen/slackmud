@@ -46,16 +46,25 @@ describe CastCommand do
       allow(slack_request).to receive(:text).and_return('cast bless joe')
       expect(slack_messenger).to receive(:msg_room)
       expect(game_command.perform).to include 'You begin to utter the names of powerful ancient deities as you prepare to bless joe!'
-      expect(SpellBlessWorker).to have_enqueued_job("C03RCDX1A", "A divine light surrounds joe blow in a shimmering white aura. He has been blessed by the ancient gods!")
-      expect(SpellBlessWorker).to have_enqueued_job("C03RCDX1A", "The divine light surrounding joe blow fades to normal." )
+      expect(SpellWorker).to have_enqueued_job('C03RCDX1A', 'A divine light surrounds joe blow in a shimmering white aura. He has been blessed by the ancient gods!')
+      expect(SpellWorker).to have_enqueued_job('C03RCDX1A', 'The divine light surrounding joe blow fades to normal.')
     end
   end
 
   describe SpellManifest do
     it 'manifests objects!' do
       allow(slack_request).to receive(:text).and_return('cast manifest apple')
-      expect(slack_messenger).to receive(:msg_room).with("C03RCDX1A", "josh skeen points his finger at the ground. In a flash of light, a red apple springs into existence!")
+      expect(slack_messenger).to receive(:msg_room).with('C03RCDX1A', 'josh skeen points his finger at the ground. In a flash of light, a red apple springs into existence!')
       expect(game_command.perform).to include 'You feel your will reach into the etheric realm successfully...'
+    end
+  end
+
+  describe SpellLevitate do
+    it 'levitates people!' do
+      allow(slack_request).to receive(:text).and_return('cast levitate joe')
+      expect(slack_messenger).to receive(:msg_room).with('C03RCDX1A', "josh skeen utters the words 'ad patitur te fugere'. joe rises into the air!")
+      expect(game_command.perform).to include 'The gods manifest your will that joe take flight!'
+      expect(SpellLevitateWorker).to have_enqueued_job('C03RCDX1A', joe.id, "joe blow falls slowly back to the ground.")
     end
   end
 end

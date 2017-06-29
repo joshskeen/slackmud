@@ -26,6 +26,18 @@ module PlayerFormatUtil
         alignment: "good" 
     end
 
+    def format_player_effects
+      return "none." if effects.empty?
+      effects.map {
+        |x| Effect::PLAYER_EFFECT[x.name]
+      }.join
+    end
+
+    def player_effects_description
+      I18n.t 'game.player_effects_description',
+        effects: format_player_effects
+    end
+
     def occupied_equipment_slots 
       inventory
         .wearable_items
