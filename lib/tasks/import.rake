@@ -59,19 +59,18 @@ namespace :import do
     end
   end
 
-  desc 'adds default properties to game' do
-    task add_default_properties_to_game: :environment do
-      default_effects = [:effect_flying,
-                         :effect_glowing,
-                         :effect_pulsating,
-                         :effect_poisoned]
-      default_effects.each do |effect|
-        puts "importing #{effect}"
-        begin
-          FactoryGirl.create(item)
-        rescue => e
-          puts "error while adding effect: #{item}, #{e}"
-        end
+  desc 'adds default properties to game'
+  task add_default_properties_to_game: :environment do
+    default_effects = [:effect_flying,
+                       :effect_glowing,
+                       :effect_pulsating,
+                       :effect_poisoned]
+    default_effects.each do |effect|
+      puts "importing #{effect}"
+      begin
+        FactoryGirl.create(effect)
+      rescue => e
+        puts "error while adding effect: #{item}, #{e}"
       end
     end
   end

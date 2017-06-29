@@ -1,6 +1,9 @@
 FactoryGirl.define do
   factory :effect do
-    name Effect::EFFECT_FLYING
+
+    factory :effect_flying do
+      name Effect::EFFECT_FLYING
+    end
 
     factory :effect_glowing do
       name Effect::EFFECT_GLOWING
