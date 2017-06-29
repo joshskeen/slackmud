@@ -9,7 +9,7 @@ FactoryGirl.define do
       inventory {FactoryGirl.create(:inventory_with_food)}
       effects {
         [
-          FactoryGirl.create(:effect)
+          FactoryGirl.create(:effect_flying)
         ]
       }
     end

@@ -77,6 +77,7 @@ en:
         The gods manifest your will that %{target} take flight!
       slack_success: "%{playername} utters the words 'ad patitur te fugere'. %{target} rises into the air!"
       target_not_found: "Nothing with that name is here to levitate!"
+      target_already_flying: "%{target} is already flying!"
     spell_bless:
       no_target: "Whom or what do you want to bless??"
       bless_fade_message: "The divine light surrounding %{target} fades to normal."
