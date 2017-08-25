@@ -63,6 +63,7 @@ namespace :import do
   task add_default_properties_to_game: :environment do
     default_effects = [:effect_flying,
                        :effect_glowing,
+                       :effect_invized,
                        :effect_pulsating,
                        :effect_poisoned]
     default_effects.each do |effect|

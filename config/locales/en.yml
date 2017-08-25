@@ -40,12 +40,12 @@ en:
 
       %{description}
 
-      it contains: 
+      it contains:
       %{inventory}
-    item_formatted_description: "%{description}" 
+    item_formatted_description: "%{description}"
     help:
       info: |
-         __ _            _                     _ 
+         __ _            _                     _
          / _\ | __ _  ___| | __ /\/\  _   _  __| |
          \ \| |/ _` |/ __| |/ //    \| | | |/ _` |
          _\ \ | (_| | (__|   </ /\/\ \ |_| | (_| |
@@ -64,6 +64,11 @@ en:
     cast_command:
       cast_what: Cast what?!
       spell_not_found: You don't know that spell!
+    spell_inviz:
+      immortal_required: You must be immortal to do that!
+      not_found: They're not here!
+      success: "You feel your will reach into the etheric realm successfully..."
+      slack_success: "%{playername} utters the words 'dissipati peribunt!'. %{target} fades out of existence."
     spell_manifest:
       immortal_required: You must be immortal to do that!
       not_found: You can't manifest one of those!
@@ -98,20 +103,20 @@ en:
       slot_occupied: "You're already wearing something there (%{slot})!"
       success: "You wear %{itemname} on your %{slot}."
       slack_success: "%{playername} wears %{itemname} on %{gender} %{slot}."
-    remove_command: 
+    remove_command:
       not_worn: You aren't wearing one of those!
       success: "You stop wearing %{itemname}."
       slack_success: "%{playername} stops wearing %{itemname}."
-    eat_command: 
+    eat_command:
       no_item_matching: You don't have one of those to eat!
       inedible: You can't eat that!
-      success: "You %{actiontype} %{shortdesc}. Delicious!" 
-      slack_success: "%{playername} %{actiontype}s %{shortdesc}. Delicious!" 
-    look_command: 
+      success: "You %{actiontype} %{shortdesc}. Delicious!"
+      slack_success: "%{playername} %{actiontype}s %{shortdesc}. Delicious!"
+    look_command:
       room_objectname: the room
       not_found: "I don't see that here!"
-      success: "You look at %{objectname}. \n%{description}" 
-      success_self: "You look at yourself. \n%{description}" 
+      success: "You look at %{objectname}. \n%{description}"
+      success_self: "You look at yourself. \n%{description}"
       slack_success: "%{playername} looks at %{objectname}."
       slack_success_room: "%{playername} looks around."
     get_command:
@@ -119,6 +124,9 @@ en:
       no_quantity_found: "There aren't that many to pick up!"
       success: "Ok, you pick up %{shortdesc}."
       slack_success: "%{playername} picks up %{shortdesc}."
+    viz_command:
+      not_invized: "You're already visible!"
+      slack_success: "%{playername} fades into existence."
     drop_command:
       no_item_matching: "You don't have one of those to drop!"
       no_quantity_found: "You don't have that many!"

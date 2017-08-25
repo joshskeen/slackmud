@@ -15,6 +15,7 @@ class GameCommand < GameCommandBase
       "drink": EatCommand,
       "emote": EmoteCommand,
       "cast": CastCommand,
+      "viz": VizCommand,
       "materialize": MaterializeCommand,
     }.with_indifferent_access
   end

@@ -1,6 +1,7 @@
 class CastCommand < GameCommandBase
   SPELLS = {
     "bless": SpellBless,
+    "inviz": SpellInviz,
     "manifest": SpellManifest,
     "levitate": SpellLevitate,
     "create beer": SpellCreateBeer

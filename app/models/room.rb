@@ -11,7 +11,7 @@
 
 class Room < ActiveRecord::Base
   include FormatUtils
-  
+
   belongs_to :inventory
   has_many :room_players
   has_many :players, through: :room_players
@@ -27,8 +27,8 @@ class Room < ActiveRecord::Base
 
   def formatted_description
     #todo - decorations!
-    I18n.t 'game.room_formatted_description', 
-      description: description, 
+    I18n.t 'game.room_formatted_description',
+      description: description,
       inventory: formatted_inventory
   end
 
@@ -38,7 +38,9 @@ class Room < ActiveRecord::Base
   end
 
   def player_by_name(name)
-    players.by_name(name).first
+    player = players.by_name(name).first
+    return nil if !player
+    player.effects.where(name: Effect::EFFECT_INVIZED).size > 0 ? nil : player
   end
 
   def self.find_or_create_by_slackid(slackid)
@@ -55,7 +57,7 @@ class Room < ActiveRecord::Base
 
   def self.create_room_from_channel(channel)
     attrs = {
-      title: channel["name"], 
+      title: channel["name"],
       description: channel["purpose"]["value"],
       slackid: channel["id"],
       inventory: Inventory.create
@@ -66,7 +68,7 @@ class Room < ActiveRecord::Base
   def self.room_from_channel_info_response(channel_info)
     response = channel_info[:channel]
     attrs = {
-      title: response[:name], 
+      title: response[:name],
       description: response[:purpose]["value"],
       slackid: response[:id],
       inventory: Inventory.create,
@@ -82,9 +84,9 @@ class Room < ActiveRecord::Base
 
   def self.generic_room_from_slackid(slackid)
     attrs = {
-      title: I18n.t('room.generic_title'), 
+      title: I18n.t('room.generic_title'),
       description: I18n.t('room.generic_description'),
-      slackid: slackid, 
+      slackid: slackid,
       inventory: Inventory.create
     }
     Room.create(attrs)

@@ -13,5 +13,3 @@ Style/NumericLiterals:
   Enabled: false
 Style/NegatedIf:
   Enabled: false
-Style/TrailingComma:
-  Enabled: false

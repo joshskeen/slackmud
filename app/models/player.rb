@@ -35,6 +35,10 @@ class Player < ActiveRecord::Base
     inventory.by_keyword(keyword)
   end
 
+  def name
+    effects.where(name: Effect::EFFECT_INVIZED).count > 0 ? "someone" : self[:name]
+  end
+
   def distinct_inventory
     inventory.unworn.order(:shortdesc).distinct
   end

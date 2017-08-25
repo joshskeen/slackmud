@@ -7,6 +7,7 @@ describe CastCommand do
   let(:slack_messenger) { double(SlackMessenger) }
   let(:player) { FactoryGirl.create(:player_with_inventory, immortal: true) }
   let!(:effect_flying) { FactoryGirl.create(:effect_flying) }
+  let!(:effect_invized) { FactoryGirl.create(:effect_invized) }
   let(:joe) { FactoryGirl.create(:player_joe) }
   let(:item) { FactoryGirl.create(:item) }
   let(:room) { FactoryGirl.create(:room, players: [player, joe]) }
@@ -42,6 +43,15 @@ describe CastCommand do
     end
   end
 
+  describe SpellInviz  do
+    it 'invizes people!' do
+      allow(slack_request).to receive(:text).and_return('cast inviz joe')
+      expect(slack_messenger).to receive(:msg_room)
+      expect(game_command.perform).to include "You feel your will reach into the etheric realm successfully..."
+      expect(joe.effects.where(name: Effect::EFFECT_INVIZED).count).to eq 1
+      expect(joe.name).to eq "someone"
+    end
+  end
   describe SpellBless do
     it 'blesses people!' do
       allow(slack_request).to receive(:text).and_return('cast bless joe')
@@ -51,6 +61,7 @@ describe CastCommand do
       expect(SpellWorker).to have_enqueued_job('C03RCDX1A', 'The divine light surrounding joe blow fades to normal.')
     end
   end
+
 
   describe SpellManifest do
     it 'manifests objects!' do

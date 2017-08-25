@@ -52,6 +52,18 @@ FactoryGirl.define do
       slackid "U03RCDX0U"
       inventory { Inventory.create}
     end
+    factory :player_invized_bob do
+      name "donny average"
+      gender "male"
+      description "its you!"
+      slackid "U03S2MZBH"
+      inventory { Inventory.create}
+      effects {
+        [
+          FactoryGirl.create(:effect_invized)
+        ]
+      }
+    end
     factory :player_joe do
       name "joe blow"
       gender "male"

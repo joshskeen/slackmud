@@ -13,6 +13,9 @@ FactoryGirl.define do
       name Effect::EFFECT_PULSATING
     end
 
+    factory :effect_invized do
+      name Effect::EFFECT_INVIZED
+    end
     factory :effect_poisoned do
       name Effect::EFFECT_POISONED
     end

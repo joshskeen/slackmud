@@ -12,23 +12,23 @@ class GiveCommand < GameCommandBase
     return I18n.t 'game.give_command.quantity_not_found' if !player_has_quantity?
     transfer_item_to_player
     slack_messenger.msg_room(room.slackid, room_message)
-    user_message 
+    user_message
   end
 
   private
 
-  def user_message 
-    return I18n.t 'game.give_command.success', 
-      itemdesc: item.shortdesc, 
-      target: target_player_in_room.name, 
+  def user_message
+    return I18n.t 'game.give_command.success',
+      itemdesc: item.shortdesc,
+      target: target_player_in_room.name,
       qty: @quantity
   end
 
   def room_message
-    I18n.t 'game.give_command.slack_success', 
+    I18n.t 'game.give_command.slack_success',
       name: player.name,
-      itemdesc: item.shortdesc, 
-      target: target_player_in_room.name, 
+      itemdesc: item.shortdesc,
+      target: target_player_in_room.name,
       qty: @quantity
   end
 
