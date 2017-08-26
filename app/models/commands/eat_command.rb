@@ -10,7 +10,7 @@ class EatCommand < GameCommandBase
       actiontype: actiontype
   end
 
-  private 
+  private
 
   def item_edible?
     item.fetch_property("edible").present?

@@ -126,6 +126,7 @@ en:
       slack_success: "%{playername} picks up %{shortdesc}."
     viz_command:
       not_invized: "You're already visible!"
+      success: "You fade back into existence."
       slack_success: "%{playername} fades into existence."
     drop_command:
       no_item_matching: "You don't have one of those to drop!"
