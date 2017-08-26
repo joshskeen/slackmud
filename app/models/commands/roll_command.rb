@@ -14,11 +14,37 @@ class RollCommand < GameCommandBase
       dicename: dice.shortdesc,
       name: player.name,
       gender: player.third_person_subject.capitalize,
-      score: calculate_roll
+      score: calculate_roll,
+      emoji: score_reaction
   end
 
   def wearing_rollable?
     player.inventory.worn.rollable.count > 0
+  end
+
+  def score_reaction
+    case calculate_roll.to_f / dice_value.to_f
+      when 1
+        return ":smiling_imp: :crown: :laughing: !"
+      when 0.8..0.99
+        return ":money_mouth_face: !"
+      when 0.7..0.8
+        return ":wink: !"
+      when 0.6..0.7
+        return ":smile: "
+      when 0.5..0.6
+        return ":simple_smile:"
+      when 0.4..0.5
+        return ":smirk:"
+      when 0.3..0.4
+        return ":expressionless:"
+      when 0.2..0.3
+        return ":slightly_frowning_face:"
+      when 0.1..0.2
+        return ":frowning:"
+      else
+        return ":cry:"
+    end
   end
 
   def dice

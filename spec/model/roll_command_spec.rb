@@ -11,7 +11,8 @@ describe RollCommand do
   let(:room){ FactoryGirl.create(:room, players: [player])}
 
   before(:each){
-    allow_any_instance_of(RollCommand).to receive(:dice_value).and_return(1)
+    allow_any_instance_of(RollCommand).to receive(:calculate_roll).and_return(1)
+    allow_any_instance_of(RollCommand).to receive(:dice_value).and_return(12)
     allow(game).to receive(:slack_request).and_return(slack_request)
     allow(game).to receive(:player).and_return(player)
     allow(game).to receive(:room).and_return(room)
@@ -21,8 +22,8 @@ describe RollCommand do
       it 'rolls the dice!' do
         player.inventory.inventory_items.where(item_id: player.inventory.items.rollable.first).first.update_attribute(:worn, true)
         allow(slack_request).to receive(:text).and_return("roll")
-        expect(slack_messenger).to receive(:msg_room).with("C03RCDX1A", "josh skeen rolls a pair of dice carved from dragonbone. He got a *1*! :game_die:")
-        expect(game_command.perform).to eq "You roll a pair of dice carved from dragonbone! You got a 1!"
+        expect(slack_messenger).to receive(:msg_room).with("C03RCDX1A", "josh skeen rolls a pair of 6-sided dice carved from dragonbone. :game_die: He got a *1* :cry:")
+        expect(game_command.perform).to eq "You roll a pair of 6-sided dice carved from dragonbone! You got a 1."
       end
     end
     describe 'failure' do

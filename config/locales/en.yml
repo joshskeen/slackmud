@@ -56,8 +56,8 @@ en:
       no_help_file: "I don't have a helpfile for that topic: %{topic}!"
     roll_command:
       no_rollable: "You need to hold some dice first!"
-      success: "You roll %{dicename}! You got a %{score}!"
-      slack_success: "%{name} rolls %{dicename}. %{gender} got a *%{score}*! :game_die:"
+      success: "You roll %{dicename}! You got a %{score}."
+      slack_success: "%{name} rolls %{dicename}. :game_die: %{gender} got a *%{score}* %{emoji}"
     give_command:
       no_item_matching: "You don't have one of those to give!"
       no_target: "No one with with that name is here!"
