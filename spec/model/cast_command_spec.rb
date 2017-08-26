@@ -46,7 +46,7 @@ describe CastCommand do
   describe SpellInviz  do
     it 'invizes people!' do
       allow(slack_request).to receive(:text).and_return('cast inviz joe')
-      expect(slack_messenger).to receive(:msg_room).with('C03RCDX1A', "josh skeen utters the words 'dissipati peribunt!'. joe fades out of existence.")
+      expect(slack_messenger).to receive(:msg_room).with('C03RCDX1A', "josh skeen utters the words 'dissipati peribunt!'. joe blow fades out of existence.")
       expect(game_command.perform).to include "You feel your will reach into the etheric realm successfully..."
       expect(joe.effects.where(name: Effect::EFFECT_INVIZED).count).to eq 1
       expect(joe.name).to eq "someone"
@@ -57,7 +57,7 @@ describe CastCommand do
       expect(game_command.perform).to include "They're not here!"
     end
     it 'inviz self' do
-      allow(slack_request).to receive(:text).and_return('cast inviz')
+      allow(slack_request).to receive(:text).and_return('cast inviz josh')
       expect(slack_messenger).to receive(:msg_room).with("C03RCDX1A","josh skeen utters the words 'dissipati peribunt!'. josh skeen fades out of existence.")
       expect(game_command.perform).to include "You feel your will reach into the etheric realm successfully..."
       expect(player.effects.where(name: Effect::EFFECT_INVIZED).count).to eq 1

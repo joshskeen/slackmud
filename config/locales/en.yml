@@ -66,6 +66,7 @@ en:
       spell_not_found: You don't know that spell!
     spell_inviz:
       immortal_required: You must be immortal to do that!
+      no_target: "Who do you want to cast it on?"
       not_found: They're not here!
       success: "You feel your will reach into the etheric realm successfully..."
       slack_success: "%{playername} utters the words 'dissipati peribunt!'. %{target} fades out of existence."
@@ -126,7 +127,6 @@ en:
       slack_success: "%{playername} picks up %{shortdesc}."
     viz_command:
       not_invized: "You're already visible!"
-      no_target: "Who do you want to cast it on?"
       success: "You fade back into existence."
       slack_success: "%{playername} fades into existence."
     drop_command:
