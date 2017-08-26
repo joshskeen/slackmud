@@ -11,7 +11,7 @@ class VizCommand < GameCommandBase
   private
 
   def make_visible
-    player.effects.where(name: Effect::EFFECT_INVIZED).delete_all
+    player.effects.delete(Effect.where(name: Effect::EFFECT_INVIZED))
   end
 
   def already_visible_message

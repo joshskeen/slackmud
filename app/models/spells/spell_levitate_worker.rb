@@ -11,6 +11,6 @@ class SpellLevitateWorker
   end
 
   def remove_flight(player_id)
-    Player.find(player_id).effects.where(name: 'flying').delete_all
+    Player.find(player_id).effects.delete(Effect.where(name: Effect::EFFECT_FLYING))
   end
 end
