@@ -71,7 +71,7 @@ namespace :import do
       begin
         FactoryGirl.create(effect)
       rescue => e
-        puts "error while adding effect: #{item}, #{e}"
+        puts "error while adding effect: #{effect}, #{e}"
       end
     end
   end
