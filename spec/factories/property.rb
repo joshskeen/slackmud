@@ -24,6 +24,13 @@ FactoryGirl.define do
       name "wearable"
       value "neck"
     end
-
+    factory :rollable_d12 do
+      name "rollable"
+      value "12"
+    end
+    factory :rollable_d16 do
+      name "rollable"
+      value "16"
+    end
   end
 end

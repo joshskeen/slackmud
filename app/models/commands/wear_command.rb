@@ -13,10 +13,10 @@ class WearCommand < GameCommandBase
   private
 
   def room_message
-    I18n.t 'game.wear_command.slack_success', 
-      itemname: item.shortdesc, 
-      slot: wearable_slot, 
-      playername: player.name, 
+    I18n.t 'game.wear_command.slack_success',
+      itemname: item.shortdesc,
+      slot: wearable_slot,
+      playername: player.name,
       gender: player.third_person_possessive
   end
 

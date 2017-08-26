@@ -88,6 +88,8 @@ namespace :import do
                      :item_cloak,
                      :item_klondike,
                      :item_tunic,
+                     :item_dragonbone_dice,
+                     :item_steel_dice,
                      :item_apple,
                      :item_loincloth,
                      :item_birthday_cake]

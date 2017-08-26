@@ -16,6 +16,7 @@ class GameCommand < GameCommandBase
       "emote": EmoteCommand,
       "cast": CastCommand,
       "viz": VizCommand,
+      "roll": RollCommand,
       "materialize": MaterializeCommand,
     }.with_indifferent_access
   end

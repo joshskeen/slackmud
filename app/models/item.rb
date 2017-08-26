@@ -23,6 +23,12 @@ class Item < ActiveRecord::Base
       .references(:properties)
   }
 
+  scope :rollable, -> {
+    includes(:properties)
+      .where("properties.name = 'rollable'")
+      .references(:properties)
+  }
+
   scope :wearable, -> {
     includes(:properties)
       .where("properties.name = 'wearable'")

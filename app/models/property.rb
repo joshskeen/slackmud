@@ -9,6 +9,7 @@
 class Property < ActiveRecord::Base
 
   NAME_WEARABLE = "wearable".freeze
+  NAME_ROLLABLE = "rollable".freeze
 
   WEARABLE_VALUE_HEAD = "head".freeze
   WEARABLE_VALUE_NECK = "neck".freeze

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Eat Command' do
+describe EatCommand do
 
   let(:game){ double(Game) }
   let(:game_command){ GameCommand.new(game) }

@@ -21,6 +21,7 @@ FactoryGirl.define do
           FactoryGirl.create(:item_cloak), 
           FactoryGirl.create(:item_wizardhat), 
           FactoryGirl.create(:item_fedora), 
+          FactoryGirl.create(:item_dragonbone_dice), 
           Item.first_by_keyword("loaf")
         ]
       }

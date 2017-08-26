@@ -21,7 +21,7 @@ FactoryGirl.define do
       }
     end
 
-    factory :tem_bloody_chessboard do
+    factory :item_bloody_chessboard do
       name "bloody chessboard"
       shortdesc "a chessboard soaked in blood"
       longdesc "a chessboard clearly involved in a violent crime lies before you! "
@@ -38,6 +38,30 @@ FactoryGirl.define do
       properties {
         [
           FactoryGirl.create(:edible_food)
+        ]
+      }
+    end
+
+
+    factory :item_steel_dice do
+      name "steel dice"
+      shortdesc "a large 16-sided steel die"
+      longdesc "a large 16-sided die forged from dwarven steel rests here, waiting to be gambled with!"
+      properties {
+        [
+          FactoryGirl.create(:rollable_d16),
+          FactoryGirl.create(:wearable_hands)
+        ]
+      }
+    end
+    factory :item_dragonbone_dice do
+      name "dragonbone dice"
+      shortdesc "a pair of 6-sided dice carved from dragonbone"
+      longdesc "a pair of 6-sided dice carved from dragonbone lies here, waiting to be gambled with!"
+      properties {
+        [
+          FactoryGirl.create(:rollable_d12),
+          FactoryGirl.create(:wearable_hands)
         ]
       }
     end
