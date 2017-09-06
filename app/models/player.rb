@@ -22,8 +22,12 @@ class Player < ActiveRecord::Base
 
   delegate :add_item,
            :remove_item,
+           :add_funds,
+           :remove_funds,
            :possesses?,
+           :has_funds?,
            :has_quantity?,
+           :nerdcoins,
            to: :inventory
 
   scope :by_slackid, -> (slackid) { where(slackid: slackid) }

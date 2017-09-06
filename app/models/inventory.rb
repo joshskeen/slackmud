@@ -40,6 +40,21 @@ class Inventory < ActiveRecord::Base
     InventoryItem.delete(Inventory.where(id: id).first.inventory_items.where(item_id: item.id).limit(qty))
   end
 
+  def remove_funds(qty)
+    inventory = Inventory.find(id)
+    balance = [inventory.nerdcoins -= qty, 0].max
+    inventory.update(nerdcoins: balance)
+  end
+
+  def add_funds(qty)
+    inventory = Inventory.find(id)
+    inventory.update(nerdcoins: inventory.nerdcoins += qty)
+  end
+
+  def has_funds?(qty)
+    nerdcoins >= qty
+  end
+
   def possesses?(item, qty)
     items.where(id: item.id).count >= qty
   end

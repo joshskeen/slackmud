@@ -1,6 +1,7 @@
 en:
   hello: "Hello world"
   game:
+    insufficient_funds: "You lack the necessary nerdcoin to do that!"
     emote_command:
       emote_not_found: I don't know how to do that!
     materialize_command:
@@ -9,6 +10,11 @@ en:
       success: You feel your backback grow heavier!
     inventory_command:
       nothing: Nothing.
+    inventory_summary: |
+      nerdcoins: %{nerdcoins}
+
+      --------[items]--------
+      %{formatted_inventory}
     formatted_inventory: |
       %{inventory}
     formatted_inventory_count: |
@@ -65,6 +71,8 @@ en:
       target_not_found: "I don't see anyone here with that name to give to!"
       success: "You give %{itemdesc} to %{target} (%{qty})"
       slack_success: "%{name} gives %{itemdesc} to %{target}."
+      coin_success: "You give %{qty} nerdcoin to %{target}"
+      slack_coin_success: "%{name} gives %{qty} nerdcoin to %{target}. :moneybag:"
     cast_command:
       cast_what: Cast what?!
       spell_not_found: You don't know that spell!

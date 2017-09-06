@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170629211714) do
+ActiveRecord::Schema.define(version: 20170906013701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170629211714) do
   add_index "effects", ["name"], name: "index_effects_on_name", unique: true, using: :btree
 
   create_table "inventories", force: :cascade do |t|
+    t.integer "nerdcoins", default: 0
   end
 
   create_table "inventory_items", force: :cascade do |t|

@@ -25,6 +25,7 @@ FactoryGirl.define do
           Item.first_by_keyword("loaf")
         ]
       }
+      nerdcoins 10
     end
   end
 end

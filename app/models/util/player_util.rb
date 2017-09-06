@@ -13,8 +13,13 @@ module PlayerUtil
     end
 
     def transfer_item_to_player
-      player.remove_item(item, @quantity)
-      target_player_in_room.add_item(item, @quantity)
+      if coin?
+        player.remove_funds(@quantity)
+        target_player_in_room.add_funds(@quantity)
+      else
+        player.remove_item(item, @quantity)
+        target_player_in_room.add_item(item, @quantity)
+      end
     end
 
     def transfer_item_to_room
@@ -35,8 +40,13 @@ module PlayerUtil
       room.item(@arguments)
     end
 
+    def coin?
+      (@arguments =~ /coin/) != nil
+    end
+
     def player_item
-      player.item(@arguments)
+      return player.item(@arguments) unless coin?
+      player.has_funds?(@quantity)
     end
 
     def player_has_item?
@@ -53,7 +63,8 @@ module PlayerUtil
     end
 
     def player_has_quantity?
-      player.has_quantity?(@arguments, @quantity)
+      return player.has_quantity?(@arguments, @quantity) unless coin?
+      player.has_funds?(@quantity)
     end
 
     def room_has_quantity?
