@@ -11,13 +11,13 @@ describe LookCommand do
   let!(:aleck){ FactoryGirl.create(:player_aleck)}
   let(:joe){ FactoryGirl.create(:player_joe)}
   let(:loincloth){FactoryGirl.create(:item_loincloth)}
-  let(:room_inventory){ FactoryGirl.create(:inventory, items: [loincloth]) }
+  let(:room_inventory){ FactoryGirl.create(:inventory, items: [loincloth], nerdcoins: 10) }
   let(:room){ FactoryGirl.create(:room, players: [player, joe], 
                                  inventory: room_inventory)}
 
   let(:empty_room){ FactoryGirl.create(:room,
                                        slackid: 'C03RCDX1B', 
-                                       inventory: Inventory.create)}
+                                       inventory: Inventory.create(nerdcoins: 10))}
 
   before(:each){
     allow(game).to receive(:slack_request).and_return(slack_request)

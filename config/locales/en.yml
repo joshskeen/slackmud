@@ -47,7 +47,7 @@ en:
       %{description}
 
       it contains:
-      %{inventory}
+      %{nerdcoins}%{inventory}
     item_formatted_description: "%{description}"
     help:
       info: |

@@ -32,8 +32,13 @@ class Room < ActiveRecord::Base
   def formatted_description
     #todo - decorations!
     I18n.t 'game.room_formatted_description',
+      nerdcoins: formatted_nerdcoins,
       description: description,
       inventory: formatted_inventory
+  end
+
+  def formatted_nerdcoins
+   nerdcoins > 0 ? "#{nerdcoins} nerdcoins \n" : ""
   end
 
   def formatted_inventory
