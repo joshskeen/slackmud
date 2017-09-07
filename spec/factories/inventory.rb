@@ -12,6 +12,9 @@ FactoryGirl.define do
         ]
       }
     end
+    factory :inventory_with_loot do
+      nerdcoins 10
+    end
     factory :inventory_with_items do
       items {
         [

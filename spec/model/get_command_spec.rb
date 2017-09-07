@@ -13,7 +13,6 @@ describe 'Materialize Command' do
     let(:inventory){FactoryGirl.create(:inventory_with_items)}
     let(:room){ FactoryGirl.create(:room, players: [joe], 
                                    inventory: inventory)}
-
     before(:each){
       allow(game).to receive(:slack_request).and_return(slack_request)
       allow(game).to receive(:player).and_return(joe)

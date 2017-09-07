@@ -136,7 +136,9 @@ en:
       no_item_matching: "I don't see one of those to pick up!"
       no_quantity_found: "There aren't that many to pick up!"
       success: "Ok, you pick up %{shortdesc}."
+      coin_success: "Ok, you pick up %{qty} nerdcoin."
       slack_success: "%{playername} picks up %{shortdesc}."
+      slack_coin_success: "%{playername} picks up %{qty} nerdcoin."
     viz_command:
       not_invized: "You're already visible!"
       success: "You fade back into existence."
@@ -145,7 +147,9 @@ en:
       no_item_matching: "You don't have one of those to drop!"
       no_quantity_found: "You don't have that many!"
       success: "Ok, you drop %{itemname}. (%{qty})"
+      coin_success: "Ok, you drop %{qty} nerdcoin."
       slack_success: "%{playername} drops %{itemname} on the floor. (%{qty})"
+      slack_coin_success: "%{playername} drops %{qty} nerdcoin on the ground."
     command_not_found: Huh? Type help for help!
   room:
     generic_title: "A nondescript room"

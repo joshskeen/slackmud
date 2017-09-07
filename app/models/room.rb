@@ -17,8 +17,12 @@ class Room < ActiveRecord::Base
   has_many :players, through: :room_players
   delegate :add_item,
     :remove_item,
+    :nerdcoins,
+    :remove_funds,
     :possesses?,
     :has_quantity?,
+    :add_funds,
+    :has_funds?,
     to: :inventory
 
   def item(keyword)

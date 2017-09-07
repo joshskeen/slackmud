@@ -46,4 +46,49 @@ describe 'Nerdcoin' do
       expect(player.nerdcoins).to eq 1
     end
   end
+
+  describe 'drop command' do
+    before(:each){
+      allow(game).to receive(:slack_request).and_return(slack_request)
+      allow(game).to receive(:player).and_return(player)
+      allow(game).to receive(:room).and_return(room)
+      allow(game).to receive(:slack_messenger).and_return(slack_messenger)
+    }
+
+    let(:player){ FactoryGirl.create(:player_with_inventory)}
+    let(:joe){FactoryGirl.create(:player_joe)}
+    let(:room){ FactoryGirl.create(:room, players: [player, joe])}
+    it 'drops nerdcoin in a room' do
+      expect(slack_messenger).to receive(:msg_room).with(room.slackid,"josh skeen drops 9 nerdcoin on the ground.")
+        allow(slack_request).to receive(:text).and_return("drop 9 nerdcoin")
+        expect(game_command.perform).to eq I18n.t('game.drop_command.coin_success', qty: 9)
+        player.reload
+        room.reload
+        expect(player.nerdcoins).to eq 1
+        expect(room.inventory.nerdcoins).to eq 9
+    end
+  end
+
+  describe 'get command' do
+    before(:each){
+      allow(game).to receive(:slack_request).and_return(slack_request)
+      allow(game).to receive(:player).and_return(player)
+      allow(game).to receive(:room).and_return(room)
+      allow(game).to receive(:slack_messenger).and_return(slack_messenger)
+    }
+
+    let(:player){ FactoryGirl.create(:player_with_inventory)}
+    let(:joe){FactoryGirl.create(:player_joe)}
+    let(:room){ FactoryGirl.create(:room_with_loot, players: [player, joe])}
+    it 'gets nerdcoin in a room' do
+      expect(slack_messenger).to receive(:msg_room).with(room.slackid,"josh skeen picks up 9 nerdcoin.")
+        allow(slack_request).to receive(:text).and_return("get 21 nerdcoin")
+        expect(game_command.perform).to eq I18n.t('game.get_command.coin_success', qty: 9)
+        player.reload
+        room.reload
+        expect(player.nerdcoins).to eq 19
+        expect(room.inventory.nerdcoins).to eq 1
+    end
+  end
+
 end
