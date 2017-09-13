@@ -72,6 +72,19 @@ FactoryGirl.define do
       inventory { Inventory.create}
     end
 
+    factory :player_shopkeeper do
+      gender "male"
+      name "the Shopkeeper"
+      shortdesc "The shopkeeper smiles and patiently waits for you to buy something."
+      description "The shopkeeper will fight like a madman to protect his store from riff-raff
+like you."
+      npc true
+      shopkeeper true
+      inventory {
+        Inventory.create(items: [Item.first])
+      }
+    end
+
   end
 
 end

@@ -15,6 +15,7 @@ class GameCommand < GameCommandBase
       "drink": EatCommand,
       "emote": EmoteCommand,
       "cast": CastCommand,
+      "list": ListCommand,
       "viz": VizCommand,
       "roll": RollCommand,
       "materialize": MaterializeCommand,

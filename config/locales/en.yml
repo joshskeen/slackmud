@@ -1,6 +1,12 @@
 en:
   hello: "Hello world"
   game:
+    list_command:
+      no_shopkeeper: "You dont see a shopkeeper by that name here."
+      shop_summary: |
+        I have the following items for sale:
+        +-----------------------------+
+        %{formatted_shop_list}
     insufficient_funds: "You lack the necessary nerdcoin to do that!"
     emote_command:
       emote_not_found: I don't know how to do that!
@@ -15,6 +21,8 @@ en:
 
       --------[items]--------
       %{formatted_inventory}
+    shop_item: |
+      %{name}   price: %{price} nerdcoin
     formatted_inventory: |
       %{inventory}
     formatted_inventory_count: |
@@ -45,7 +53,6 @@ en:
     room_formatted_description: |
 
       %{description}
-
       it contains:
       %{nerdcoins}%{inventory}
     item_formatted_description: "%{description}"
