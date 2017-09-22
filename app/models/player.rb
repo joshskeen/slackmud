@@ -36,7 +36,7 @@ class Player < ActiveRecord::Base
 
   scope :by_slackid, -> (slackid) { where(slackid: slackid) }
   scope :by_name, lambda { |name|
-    where('name LIKE ?', "%#{name}%")
+    where('LOWER(name) LIKE LOWER(?)', "%#{name}%")
   }
 
   def item(keyword)

@@ -4,7 +4,7 @@ en:
     list_command:
       no_shopkeeper: "You dont see a shopkeeper here."
       shop_summary: |
-        I have the following items for sale:
+        %{shopkeepername} has the following items for sale:
         +-----------------------------+
         %{formatted_shop_list}
     insufficient_funds: "You lack the necessary nerdcoin to do that!"
@@ -12,7 +12,7 @@ en:
       no_target: Buy what?
       no_item: The shopkeeper doesn't have one of those to sell.
       insufficient_funds: You lack the nerdcoin to purchase %{itemname}.
-      success: Ok, you purchase the %{itemname} from %{shopkeepername} for %{price} nerdcoin.
+      success: Ok, you purchase %{itemname} from %{shopkeepername} for %{price} nerdcoin.
       slack_success: |
         %{playername} purchases a %{itemname} from %{shopkeepername} for %{price} nerdcoin.
     emote_command:

@@ -5,6 +5,7 @@ class ListCommand < GameCommandBase
   def perform
     return I18n.t 'game.list_command.no_shopkeeper' if !shopkeeper
     return I18n.t 'game.list_command.shop_summary',
+      shopkeepername: shopkeeper.name, 
       formatted_shop_list: formatted_shop_list
   end
 

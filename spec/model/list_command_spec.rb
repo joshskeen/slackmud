@@ -35,7 +35,7 @@ describe ListCommand do
   describe 'with a single shopkeeper present' do
     it "shows a list of items for purchase" do
       allow(slack_request).to receive(:text).and_return("list")
-      expect(game_command.perform).to eq "I have the following items for sale:\n+-----------------------------+\na klondike bar                                   price: 10 nerdcoin\na pair of 6-sided dice carved from dragonbone    price: 150 nerdcoin\n\n"
+      expect(game_command.perform).to eq "Lars the Shopkeeper has the following items for sale:\n+-----------------------------+\na klondike bar                                   price: 10 nerdcoin\na pair of 6-sided dice carved from dragonbone    price: 150 nerdcoin\n\n"
     end
   end
 
