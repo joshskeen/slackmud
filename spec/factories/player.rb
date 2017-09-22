@@ -72,16 +72,29 @@ FactoryGirl.define do
       inventory { Inventory.create}
     end
 
-    factory :player_shopkeeper do
+    factory :player_shopkeeper_ulrich do
       gender "male"
-      name "the Shopkeeper"
-      shortdesc "The shopkeeper smiles and patiently waits for you to buy something."
-      description "The shopkeeper will fight like a madman to protect his store from riff-raff
+      name "Ulrich the Shopkeeper"
+      shortdesc "Ulrich the shopkeeper smiles and patiently waits for you to buy something."
+      description "Ulrich the shopkeeper will fight like a madman to protect his store from riff-raff
 like you."
       npc true
       shopkeeper true
       inventory {
-        Inventory.create(items: [Item.first])
+        Inventory.create(items: [Item.first, Item.last])
+      }
+    end
+
+    factory :player_shopkeeper_lars do
+      gender "male"
+      name "Lars the Shopkeeper"
+      shortdesc "Lars the shopkeeper smiles and patiently waits for you to buy something."
+      description "Lars the shopkeeper will fight like a madman to protect his store from riff-raff
+like you."
+      npc true
+      shopkeeper true
+      inventory {
+        Inventory.create(items: [Item.first, Item.last])
       }
     end
 

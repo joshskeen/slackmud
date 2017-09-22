@@ -6,7 +6,7 @@ class SpellInviz < GameCommandBase
   end
 
   def perform
-    return I18n.t 'game.spell_inviz.no_target' if target? || slack_text_array.length == 2
+    return I18n.t 'game.spell_inviz.no_target' if !target? || slack_text_array.length == 2
     return I18n.t 'game.spell_inviz.not_found' if !room_has_player?
     slack_messenger.msg_room(room.slackid, room_message)
     target_player_in_room.effects << Effect.where(name: Effect::EFFECT_INVIZED)

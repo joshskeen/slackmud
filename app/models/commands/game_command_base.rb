@@ -20,7 +20,7 @@ class GameCommandBase
   private
 
   def target?
-    @target.nil?
+    !@target.nil?
   end
 
   def extract_target

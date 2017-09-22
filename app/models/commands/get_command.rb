@@ -10,7 +10,7 @@ class GetCommand < GameCommandBase
   end
 
   private
-  
+
   def success_message
     return I18n.t 'game.get_command.success', shortdesc: item.shortdesc unless coin?
     return I18n.t 'game.get_command.coin_success', qty: quantity

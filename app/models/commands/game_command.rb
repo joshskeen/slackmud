@@ -16,6 +16,7 @@ class GameCommand < GameCommandBase
       "emote": EmoteCommand,
       "cast": CastCommand,
       "list": ListCommand,
+      "buy": BuyCommand,
       "viz": VizCommand,
       "roll": RollCommand,
       "materialize": MaterializeCommand,

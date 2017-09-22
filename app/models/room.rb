@@ -33,8 +33,17 @@ class Room < ActiveRecord::Base
     #todo - decorations!
     I18n.t 'game.room_formatted_description',
       nerdcoins: formatted_nerdcoins,
+      npcs: formatted_npcs,
       description: description,
       inventory: formatted_inventory
+  end
+
+  def npcs
+    players.where(npc: true)
+  end
+
+  def formatted_npcs
+    npcs.size > 0 ? "\n#{npcs.map(&:shortdesc).join("\n")}\n\n" : ""
   end
 
   def formatted_nerdcoins

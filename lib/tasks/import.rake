@@ -1,6 +1,6 @@
 namespace :import do
   require './config/genders'
-
+  game_data = YAML.load_file("#{Rails.root}/config/world.yml") || {}
   desc 'import users from slack to game'
   task import_players: :environment do
     ActiveRecord::Base.logger.level = 1
@@ -80,19 +80,7 @@ namespace :import do
   task add_items_to_game: :environment do
     ActiveRecord::Base.logger.level = 1
     puts '-> adding default items'
-    default_items = [:item_wizardhat,
-                     :item_loaf,
-                     :item_fedora,
-                     :item_sculpin,
-                     :item_magichat,
-                     :item_cloak,
-                     :item_klondike,
-                     :item_tunic,
-                     :item_dragonbone_dice,
-                     :item_steel_dice,
-                     :item_apple,
-                     :item_loincloth,
-                     :item_birthday_cake]
+    default_items = game_data["world"]["items"]
     default_items.each do |item|
       puts "importing #{item}"
       begin
@@ -100,6 +88,32 @@ namespace :import do
       rescue => e
         puts "error while adding item : #{item}, #{e}"
       end
+    end
+  end
+
+  desc 'adds shopkeepers to game'
+  task add_shopkeepers_to_game: :environment do
+    ActiveRecord::Base.logger.level = 1
+    puts '-> adding shopkeepers'
+    shopkeepers = game_data["world"]["shopkeepers"]
+    shopkeepers.each do |shopkeeper|
+      puts "importing #{shopkeeper['model']}"
+      keeper_items = shopkeeper["inventory"].map {|x| Item.by_keyword(FactoryGirl.attributes_for(x)[:shortdesc]).first}
+      begin
+        FactoryGirl.create(shopkeeper["model"], inventory: Inventory.create(items: keeper_items))
+      rescue => e
+        puts "error while adding shopkeeper: #{shopkeeper["model"]}, #{e}"
+      end
+    end
+  end
+
+  desc 'configures rooms'
+  task configure_rooms: :environment do
+    rooms = game_data["world"]["rooms"]
+    rooms.each do | room |
+      room = Room.where('lower(title) = ?', room["name"]).first
+      npcs = room["npcs"].map {|x| Player.by_keyword(FactoryGirl.attributes_for(x)[:name]).first}
+      room.players << npcs
     end
   end
 
@@ -111,6 +125,8 @@ namespace :import do
       Rake::Task['import:import_rooms'].invoke
       Rake::Task['import:add_players_to_rooms'].invoke
       Rake::Task['import:add_items_to_game'].invoke
+      Rake::Task['import:add_shopkeepers_to_game'].invoke
+      Rake::Task['import:configure_rooms'].invoke
     rescue => e
       puts 'something went horribly wrong!'
       puts e

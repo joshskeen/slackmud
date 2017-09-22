@@ -12,11 +12,11 @@ describe LookCommand do
   let(:joe){ FactoryGirl.create(:player_joe)}
   let(:loincloth){FactoryGirl.create(:item_loincloth)}
   let(:room_inventory){ FactoryGirl.create(:inventory, items: [loincloth], nerdcoins: 10) }
-  let(:room){ FactoryGirl.create(:room, players: [player, joe], 
+  let(:room){ FactoryGirl.create(:room, players: [player, joe],
                                  inventory: room_inventory)}
 
   let(:empty_room){ FactoryGirl.create(:room,
-                                       slackid: 'C03RCDX1B', 
+                                       slackid: 'C03RCDX1B',
                                        inventory: Inventory.create(nerdcoins: 10))}
 
   before(:each){
@@ -40,7 +40,7 @@ describe LookCommand do
     allow(slack_request).to receive(:text).and_return("look")
     expect(slack_messenger).to receive(:msg_room).with(empty_room.slackid, "josh skeen looks around.")
     expect(game_command.perform).to eq I18n.t 'game.look_command.success',
-      objectname: "the room", 
+      objectname: "the room",
       description: empty_room.formatted_description
 
   end
@@ -49,15 +49,15 @@ describe LookCommand do
     allow(slack_request).to receive(:text).and_return("look")
     expect(slack_messenger).to receive(:msg_room).with(room.slackid, "josh skeen looks around.")
     expect(game_command.perform).to eq I18n.t 'game.look_command.success',
-      objectname: "the room", 
+      objectname: "the room",
       description: room.formatted_description
   end
 
   it "looks at a room item" do
     allow(slack_request).to receive(:text).and_return("look loincloth")
     expect(slack_messenger).to receive(:msg_room).with(room.slackid, "josh skeen looks at a black leather loincloth.")
-    expect(game_command.perform).to eq I18n.t 'game.look_command.success', 
-      description: loincloth.longdesc, 
+    expect(game_command.perform).to eq I18n.t 'game.look_command.success',
+      description: loincloth.longdesc,
       objectname: loincloth.shortdesc
 
   end
@@ -66,7 +66,7 @@ describe LookCommand do
     allow(slack_request).to receive(:text).and_return("look tunic")
     expect(slack_messenger).to receive(:msg_room).with(room.slackid, "josh skeen looks at a black woolen tunic.")
     expect(game_command.perform).to eq I18n.t 'game.look_command.success',
-      description: "you see a black wool tunic neatly folded..", 
+      description: "you see a black wool tunic neatly folded..",
       objectname: "a black woolen tunic"
   end
 
@@ -74,7 +74,7 @@ describe LookCommand do
     allow(slack_request).to receive(:text).and_return("look joe")
     expect(slack_messenger).to receive(:msg_room).with(room.slackid, "josh skeen looks at joe blow.")
     expect(game_command.perform).to eq I18n.t 'game.look_command.success',
-      description: joe.formatted_description, 
+      description: joe.formatted_description,
       objectname: joe.name
   end
 

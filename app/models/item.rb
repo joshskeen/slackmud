@@ -6,6 +6,7 @@
 #  shortdesc :string
 #  longdesc  :string
 #  name      :string
+#  value     :integer          default(0)
 #
 
 class Item < ActiveRecord::Base

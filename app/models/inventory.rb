@@ -2,7 +2,8 @@
 #
 # Table name: inventories
 #
-#  id :integer          not null, primary key
+#  id        :integer          not null, primary key
+#  nerdcoins :integer          default(0)
 #
 
 class Inventory < ActiveRecord::Base

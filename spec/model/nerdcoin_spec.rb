@@ -81,13 +81,13 @@ describe 'Nerdcoin' do
     let(:joe){FactoryGirl.create(:player_joe)}
     let(:room){ FactoryGirl.create(:room_with_loot, players: [player, joe])}
     it 'gets nerdcoin in a room' do
-      expect(slack_messenger).to receive(:msg_room).with(room.slackid,"josh skeen picks up 9 nerdcoin.")
+      expect(slack_messenger).to receive(:msg_room).with(room.slackid,"josh skeen picks up 21 nerdcoin.")
         allow(slack_request).to receive(:text).and_return("get 21 nerdcoin")
-        expect(game_command.perform).to eq I18n.t('game.get_command.coin_success', qty: 9)
+        expect(game_command.perform).to eq I18n.t('game.get_command.coin_success', qty: 21)
         player.reload
         room.reload
-        expect(player.nerdcoins).to eq 19
-        expect(room.inventory.nerdcoins).to eq 1
+        expect(player.nerdcoins).to eq 31
+        expect(room.inventory.nerdcoins).to eq 9
     end
   end
 

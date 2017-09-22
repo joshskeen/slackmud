@@ -7,7 +7,7 @@ class GiveCommand < GameCommandBase
 
   def perform
     return no_item_matching_error if !player_has_item?
-    return I18n.t 'game.give_command.no_target' if target? || slack_text_array.length == 2
+    return I18n.t 'game.give_command.no_target' if !target? || slack_text_array.length == 2
     return I18n.t 'game.give_command.target_not_found' if !room_has_player?
     return I18n.t 'game.give_command.quantity_not_found' if !player_has_quantity?
     transfer_item_to_player

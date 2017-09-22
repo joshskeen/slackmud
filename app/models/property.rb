@@ -3,6 +3,7 @@
 # Table name: properties
 #
 #  id    :integer          not null, primary key
+#  name  :string
 #  value :string
 #
 

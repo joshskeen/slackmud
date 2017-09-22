@@ -6,7 +6,7 @@ class SpellLevitate < GameCommandBase
   end
 
   def perform
-    return I18n.t 'game.spell_levitate.no_target' if target? || slack_text_array.length == 2
+    return I18n.t 'game.spell_levitate.no_target' if !target? || slack_text_array.length == 2
     return I18n.t 'game.spell_levitate.target_not_found' if !room_has_player?
     return already_flying if player_is_flying?
     target_player_in_room.effects << Effect.where(name: Effect::EFFECT_FLYING)

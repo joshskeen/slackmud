@@ -11,11 +11,7 @@ class ListCommand < GameCommandBase
   private
 
   def shopkeeper
-    if arguments.empty?
-      room.players.where(npc: true, shopkeeper: true).first
-    else
-      room.players.by_name(arguments).where(npc: true, shopkeeper: true).first
-    end
+    room.npcs.where(shopkeeper: true).first
   end
 
   def formatted_shop_list

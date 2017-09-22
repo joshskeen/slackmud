@@ -7,8 +7,10 @@ module FormatUtils
   module InstanceMethods
 
     def format_shop_inventory(inventory)
-      inventory.items.distinct.map{ |x|
+      pad = inventory.items.order('LENGTH(shortdesc) DESC').first.shortdesc.size + 4
+      inventory.items.order('value asc').distinct.map{ |x|
         I18n.t 'game.shop_item',
+          pad: "".ljust(pad - x.shortdesc.size),
           name: x.shortdesc,
           price: x.value
       }.join

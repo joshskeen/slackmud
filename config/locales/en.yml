@@ -2,12 +2,19 @@ en:
   hello: "Hello world"
   game:
     list_command:
-      no_shopkeeper: "You dont see a shopkeeper by that name here."
+      no_shopkeeper: "You dont see a shopkeeper here."
       shop_summary: |
         I have the following items for sale:
         +-----------------------------+
         %{formatted_shop_list}
     insufficient_funds: "You lack the necessary nerdcoin to do that!"
+    buy_command:
+      no_target: Buy what?
+      no_item: The shopkeeper doesn't have one of those to sell.
+      insufficient_funds: You lack the nerdcoin to purchase %{itemname}.
+      success: Ok, you purchase the %{itemname} from %{shopkeepername} for %{price} nerdcoin.
+      slack_success: |
+        %{playername} purchases a %{itemname} from %{shopkeepername} for %{price} nerdcoin.
     emote_command:
       emote_not_found: I don't know how to do that!
     materialize_command:
@@ -22,7 +29,7 @@ en:
       --------[items]--------
       %{formatted_inventory}
     shop_item: |
-      %{name}   price: %{price} nerdcoin
+      %{name}%{pad}price: %{price} nerdcoin
     formatted_inventory: |
       %{inventory}
     formatted_inventory_count: |
@@ -53,7 +60,7 @@ en:
     room_formatted_description: |
 
       %{description}
-      it contains:
+      %{npcs}it contains:
       %{nerdcoins}%{inventory}
     item_formatted_description: "%{description}"
     help:

@@ -10,6 +10,10 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  inventory_id :integer
+#  immortal     :boolean          default(FALSE)
+#  shortdesc    :text
+#  npc          :boolean          default(FALSE)
+#  shopkeeper   :boolean          default(FALSE)
 #
 
 class Player < ActiveRecord::Base

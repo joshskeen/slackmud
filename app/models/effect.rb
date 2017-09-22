@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: effects
+#
+#  id   :integer          not null, primary key
+#  name :string
+#
+
 class Effect < ActiveRecord::Base
   EFFECT_FLYING = "flying"
   EFFECT_GLOWING = "glowing"
