@@ -1,0 +1,33 @@
+world:
+  items:
+    - :item_tunic
+    - :item_cloak
+    - :item_wizardhat
+    - :item_loaf
+    - :item_fedora
+    - :item_sculpin
+    - :item_magichat
+    - :item_cloak
+    - :item_klondike
+    - :item_tunic
+    - :item_dragonbone_dice
+    - :item_steel_dice
+    - :item_apple
+    - :item_loincloth
+    - :item_birthday_cake
+  shopkeepers:
+    - model: :player_shopkeeper_lars
+      inventory:
+          - :item_tunic
+          - :item_wizardhat
+          - :item_loaf
+          - :item_klondike
+          - :item_tunic
+          - :item_dragonbone_dice
+          - :item_apple
+          - :item_loincloth
+          - :item_birthday_cake
+  rooms:
+    - name: playground
+      players:
+        - :player_shopkeeper_lars
