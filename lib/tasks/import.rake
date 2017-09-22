@@ -110,10 +110,16 @@ namespace :import do
   desc 'configures rooms'
   task configure_rooms: :environment do
     rooms = game_data["world"]["rooms"]
-    rooms.each do | room |
-      room = Room.where('lower(title) = ?', room["name"]).first
-      npcs = room["npcs"].map {|x| Player.by_keyword(FactoryGirl.attributes_for(x)[:name]).first}
+    rooms.each do | roomconfig |
+      puts "configuring room #{roomconfig["name"]}"
+      begin
+      room = Room.where('lower(title) = ?', roomconfig["name"]).first
+      room.players.delete(room.npcs)
+      npcs = roomconfig["npcs"].map {|x| Player.where(name: FactoryGirl.attributes_for(x)[:name]).first}
       room.players << npcs
+      rescue => e
+        puts "error while configuring room: #{roomconfig["name"]}, #{e}"
+      end
     end
   end
 

@@ -29,5 +29,5 @@ world:
           - :item_birthday_cake
   rooms:
     - name: playground
-      players:
+      npcs:
         - :player_shopkeeper_lars
