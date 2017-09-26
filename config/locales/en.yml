@@ -14,7 +14,7 @@ en:
       insufficient_funds: You lack the nerdcoin to purchase %{itemname}.
       success: Ok, you purchase %{itemname} from %{shopkeepername} for %{price} nerdcoin.
       slack_success: |
-        %{playername} purchases a %{itemname} from %{shopkeepername} for %{price} nerdcoin.
+        %{playername} purchases %{itemname} from %{shopkeepername} for %{price} nerdcoin.
     emote_command:
       emote_not_found: I don't know how to do that!
     materialize_command:
