@@ -11,6 +11,7 @@ world:
     - :item_klondike
     - :item_tunic
     - :item_dragonbone_dice
+    - :item_minitel_console
     - :item_steel_dice
     - :item_apple
     - :item_loincloth
