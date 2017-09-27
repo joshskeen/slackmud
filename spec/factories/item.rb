@@ -60,6 +60,19 @@ FactoryGirl.define do
         ]
       }
     end
+
+    factory :item_minitel_console do
+
+      value 1500
+      name "minitel console"
+      shortdesc "a minitel console :fax:"
+      longdesc "a minitel console lies here, ready to connect you to an electronic world of bits and bytes."
+      properties {
+        [
+          FactoryGirl.create(:wearable_hands)
+        ]
+      }
+    end
     factory :item_dragonbone_dice do
 
       value 150
