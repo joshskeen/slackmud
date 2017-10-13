@@ -33,7 +33,7 @@ let(:room){ FactoryGirl.create(:room, players: [josh, shopkeeper])}
     end
     it "with sufficient funds" do
       allow(slack_request).to receive(:text).and_return("buy chessboard")
-      expect(slack_messenger).to receive(:msg_room).with(room.slackid,"josh skeen purchases a a chessboard soaked in blood from Lars the Shopkeeper for 10 nerdcoin.\n")
+      expect(slack_messenger).to receive(:msg_room).with(room.slackid,"josh skeen purchases a chessboard soaked in blood from Lars the Shopkeeper for 10 nerdcoin.\n")
       expect(game_command.perform).to eq "Ok, you purchase a chessboard soaked in blood from Lars the Shopkeeper for 10 nerdcoin.\n"
       josh.reload
       expect(josh.nerdcoins).to eq 0

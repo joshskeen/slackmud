@@ -3,6 +3,7 @@ class CastCommand < GameCommandBase
     "bless": SpellBless,
     "inviz": SpellInviz,
     "manifest": SpellManifest,
+    "bitcoin": SpellBitcoin,
     "levitate": SpellLevitate,
     "create beer": SpellCreateBeer
   }.with_indifferent_access
