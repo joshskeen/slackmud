@@ -1,3 +1,5 @@
+require 'net/http'
+
 class SpellBitcoin < GameCommandBase
 
   def initialize(game)
